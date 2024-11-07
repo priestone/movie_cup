@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# 사이트 개요
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+사이트명 : 방구석 평론가
 
-## Available Scripts
+목적성
 
-In the project directory, you can run:
+- 사용자의 최애 영화를 선택하게 도와주는 영화 이상형 월드컵
 
-### `npm start`
+차별성
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 기존 이상형 월드컵과 달리 사용자가 영화 선택에 어려움이 있을시 도와주는 기능이 존재함
+- 3가지의 버튼(영화의 평점, 출연진 정보, 리셋)으로 사용자 선택행위를 도와줌
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+STACK
 
-### `npm test`
+- html, css, node js, react, pigma
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+구현기능
 
-### `npm run build`
+- 시작 페이지 / 경기장 페이지 (랜덤 포스터, 평점, 출연진 정보출력) / 락커룸 페이지 (1등 영화에 대한 정보 제공)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+지원디바이스
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- PC, 모바일
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 계획표
 
-### `npm run eject`
+24.11.06 (수) (1일차)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 사이트 콘셉 선정
+- API 선정
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  24.11.07 (목) (2일차)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 사이트맵 제작
+- Home 화면, Round 화면 디자인 레이아웃 제작
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  24.11.08 (금) (3일차)
 
-## Learn More
+- 새 프로젝트 파일 생성
+- HashRouter, Router, Routes 설정
+- API 설정
+- GlobalStyled 설정
+- Header 설정
+- Footer 설정
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  24.11.09 (토) (4일차)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Home 페이지 화면 디자인 제작
+- Round 페이지 화면 디자인 제작
+- Isloading 컴포넌트 제작
+- 404페이지 제작
 
-### Code Splitting
+  24.11.10 (일) (5일차)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Round 월드컵 진행 기능 구현
+  (랜덤 출력, 선택시 다음 라운드 영화 출력, 경기 종료)
 
-### Analyzing the Bundle Size
+  24.11.11 (월) (6일차)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Round 페이지 버튼 컴포넌트 제작
+  (평점보기, 출연진보기, 새로고침)
 
-### Making a Progressive Web App
+  24.11.12 (화) (7일차)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 전체적인 사용성 테스트 및 유지보수
+- 1차 배포
