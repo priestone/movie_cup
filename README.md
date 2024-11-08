@@ -1,25 +1,25 @@
 # 사이트 개요
 
-사이트명 : 방구석 평론가
+- 사이트명 : 방구석 평론가
 
-목적성
+**목적성**
 
 - 사용자의 최애 영화를 선택하게 도와주는 영화 이상형 월드컵
 
-차별성
+**차별성**
 
 - 기존 이상형 월드컵과 달리 사용자가 영화 선택에 어려움이 있을시 도와주는 기능이 존재함
 - 3가지의 버튼(영화의 평점, 출연진 정보, 리셋)으로 사용자 선택행위를 도와줌
 
-STACK
+**STACK**
 
 - html, css, node js, react, pigma
 
-구현기능
+**구현기능**
 
 - 시작 페이지 / 경기장 페이지 (랜덤 포스터, 평점, 출연진 정보출력) / 락커룸 페이지 (1등 영화에 대한 정보 제공)
 
-지원디바이스
+**지원디바이스**
 
 - PC, 모바일
 
@@ -70,8 +70,8 @@ STACK
 
 [x] npm i react-router-dom
 [x] npm i node-fetch
-[] npm i styled-components
-[] npm i styled-reset
+[x] npm i styled-components
+[x] npm i styled-reset
 [] npm i react-spinners
 [] font-awesome
 [] npm i react-hook-form

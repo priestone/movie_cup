@@ -9,7 +9,7 @@ import PageNotFound from "./pages/PageNotFound";
 const Router = () => {
   return (
     <HashRouter>
-      <Header></Header>
+      {/* <Header></Header> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ground" element={<Ground />} />

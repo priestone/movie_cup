@@ -1,5 +1,11 @@
+import Header from "../../components/Header";
+
 const Ground = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Header></Header>
+    </div>
+  );
 };
 
 export default Ground;
