@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Header from "../../components/Header";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -53,28 +55,33 @@ const Start = styled.button`
   height: 50px;
   border: 1px solid white;
   border-radius: 50px;
-  margin-top: 100px;
+  margin-top: 120px;
   text-align: center;
 `;
 
 const Home = () => {
   return (
-    <Container>
-      <Credit>
-        <h2>영화 이상형 월드컵</h2>
-        <TextWrap>
-          <TextWrap1>
-            <p>총 라운드</p>
-            <p>테마</p>
-          </TextWrap1>
-          <TextWrap2>
-            <p>32 강</p>
-            <p>명작</p>
-          </TextWrap2>
-        </TextWrap>
-        <Start>시작</Start>
-      </Credit>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <Credit>
+          <h2>영화 이상형 월드컵</h2>
+          <TextWrap>
+            <TextWrap1>
+              <p>총 라운드</p>
+              <p>테마</p>
+            </TextWrap1>
+            <TextWrap2>
+              <p>32 강</p>
+              <p>명작</p>
+            </TextWrap2>
+          </TextWrap>
+          <Link to="/ground">
+            <Start>시작</Start>
+          </Link>
+        </Credit>
+      </Container>
+    </>
   );
 };
 
