@@ -74,5 +74,5 @@
 [x] npm i styled-reset
 [] npm i react-spinners
 [] font-awesome
-[] npm i react-hook-form
+[x] npm i react-hook-form
 [] helmet-async

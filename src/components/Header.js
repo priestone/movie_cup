@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { headerStyle } from "../GlobalStyled";
 import { Link } from "react-router-dom";
 
-const HeaderWrap = styled.h3`
+const HeaderWrap = styled.div`
   width: 100%;
   height: 100px;
   padding: ${headerStyle.pcPadding};
@@ -13,7 +13,7 @@ const HeaderWrap = styled.h3`
   }
 `;
 
-const Logo = styled.h3`
+const Logo = styled.h2`
   font-size: 30px;
   font-family: "Gowun Batang", serif;
 `;

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
+import { useEffect, useState } from "react";
+import { movieDetail } from "../../api";
+import { useParams } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 const Container = styled.div`
   width: 100%;
@@ -40,28 +44,76 @@ const HintWrap = styled.div`
   height: 715px;
   background-color: lightgray;
 `;
+
 const Poster = styled.div`
   width: 500px;
   height: 715px;
   background-color: salmon;
 `;
 
+const ShowWrap = styled.div`
+  width: 600px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Show = styled.button`
+  all: unset;
+  width: 120px;
+  height: 80px;
+  background-color: white;
+  border-radius: 10px;
+`;
+
 const Ground = () => {
+  // const { id } = useParams();
+  const [data, setData] = useState();
+  const [isLoading, setIsloading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const movieData = await movieDetail(278);
+        setData(movieData);
+        setIsloading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <>
-      <Header></Header>
-      <Container>
-        <Title>
-          <h4>32강 월드컵 </h4>
-        </Title>
-        <Main>
-          <HintWrap></HintWrap>
-          <Poster></Poster>
-          <p>vs</p>
-          <Poster></Poster>
-          <HintWrap></HintWrap>
-        </Main>
-      </Container>
+      {isLoading ? (
+        <Loading></Loading>
+      ) : (
+        <>
+          <Header></Header>
+          <Container>
+            <Title>
+              <h4>32강 월드컵 </h4>
+            </Title>
+            <Main>
+              <HintWrap></HintWrap>
+              <Poster></Poster>
+              <p>vs</p>
+              <Poster></Poster>
+              <HintWrap></HintWrap>
+            </Main>
+            <ShowWrap>
+              <Show></Show>
+              <Show></Show>
+              <Show></Show>
+            </ShowWrap>
+          </Container>
+        </>
+      )}
     </>
   );
 };

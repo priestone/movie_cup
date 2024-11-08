@@ -27,6 +27,7 @@ const TextWrap = styled.div`
   width: 600px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 120px;
 `;
 
 const TextWrap1 = styled.div`
@@ -55,7 +56,6 @@ const Start = styled.button`
   height: 50px;
   border: 1px solid white;
   border-radius: 50px;
-  margin-top: 120px;
   text-align: center;
 `;
 
