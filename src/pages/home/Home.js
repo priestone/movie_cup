@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -57,9 +57,17 @@ const Start = styled.button`
   border: 1px solid white;
   border-radius: 50px;
   text-align: center;
+  cursor: pointer;
 `;
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleStart = () => {
+    localStorage.clear();
+    navigate("/ground");
+  };
+
   return (
     <>
       <Header />
@@ -76,9 +84,7 @@ const Home = () => {
               <p>명작</p>
             </TextWrap2>
           </TextWrap>
-          <Link to="/ground">
-            <Start>시작</Start>
-          </Link>
+          <Start onClick={handleStart}>시작</Start>
         </Credit>
       </Container>
     </>

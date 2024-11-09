@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { movieDetail } from "../../api";
 import Loading from "../../components/Loading";
 import { ORIGINAL_URL } from "../../lib/imgUrl";
+import { useNavigate } from "react-router-dom";
 
 const moviedatas = [
   { num: 0, id: 278, title: "쇼생크 탈출" },
@@ -13,10 +14,10 @@ const moviedatas = [
   { num: 4, id: 299534, title: " 어벤져스: 엔드게임" },
   { num: 5, id: 13, title: "포레스트 검프" },
   { num: 6, id: 672, title: "해리 포터와 비밀의 방" },
-  { num: 7, id: 329, title: "쥬라기 공원" },
+  { num: 7, id: 10681, title: "월•E" },
   { num: 8, id: 37165, title: "트루먼 쇼" },
   { num: 9, id: 27205, title: "인셉션" },
-  { num: 10, id: 745, title: "식스센스" },
+  { num: 10, id: 150540, title: "인사이드 아웃" },
   { num: 11, id: 372058, title: " 너의 이름은." },
   { num: 12, id: 4935, title: "하울의 움직이는 성" },
   { num: 13, id: 157336, title: "인터스텔라" },
@@ -31,17 +32,13 @@ const moviedatas = [
   { num: 22, id: 644, title: "에이 아이" },
   { num: 23, id: 242452, title: "변호인" },
   { num: 24, id: 269149, title: "주토피아" },
-  { num: 25, id: 607, title: "맨 인 블랙" },
+  { num: 25, id: 129, title: "센과 치히로의 행방불명" },
   { num: 26, id: 138843, title: "컨저링" },
   { num: 27, id: 313108, title: "국제시장" },
   { num: 28, id: 567646, title: "극한직업" },
   { num: 29, id: 158445, title: "7번방의 선물" },
   { num: 30, id: 38015, title: "타짜" },
   { num: 31, id: 42190, title: "클래식" },
-  { num: 32, id: 10681, title: "월•E" },
-  { num: 33, id: 129, title: "센과 치히로의 행방불명" },
-  { num: 34, id: 150540, title: "인사이드 아웃" },
-  { num: 35, id: 38, title: "이터널 선샤인" },
 ];
 
 const Container = styled.div`
@@ -87,7 +84,7 @@ const HintWrap = styled.div`
 const Poster = styled.div`
   width: 500px;
   height: 715px;
-  /* background-color: salmon; */
+  background-color: salmon;
   background: url(${ORIGINAL_URL}${(props) => props.$coverImg}) no-repeat center /
     cover;
 `;
@@ -108,105 +105,140 @@ const Show = styled.button`
   border-radius: 10px;
 `;
 
-const saveToLoacalStorage = (key, data) => {
+// 로컬 스토리지 함수
+const saveToLocalStorage = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
 const loadFromLocalStorage = (key) => {
-  const saveData = localStorage.getItem(key);
-  return saveData ? JSON.parse(saveData) : null;
+  const savedData = localStorage.getItem(key);
+  return savedData ? JSON.parse(savedData) : null;
 };
 
 const Ground = () => {
-  const [data, setData] = useState();
-  const [isLoading, setIsloading] = useState(true);
+  const navigate = useNavigate();
+  const [data, setData] = useState([null, null]);
+  const [isLoading, setIsLoading] = useState(true);
   const [remainingMovies, setRemainingMovies] = useState(
     loadFromLocalStorage("remainingMovies") || moviedatas
   );
   const [currentMovies, setCurrentMovies] = useState([]);
-
   const [selectedMovies, setSelectedMovies] = useState(
     loadFromLocalStorage("selectedMovies") || []
   );
 
-  const RandomMovies = () => {
-    const mix = [...remainingMovies].sort(() => 0.5 - Math.random());
-    return [mix[0], mix[1]];
-  };
+  const [round, setRound] = useState(
+    loadFromLocalStorage("round") || { totalRounds: 16, current: 1 }
+  );
 
+  // 선택된 영화 핸들링
   const handleMovieSelect = (selectedMovie) => {
+    // 현재 대진 중인 두 영화의 ID를 가져옴
+    const [firstMovie, secondMovie] = currentMovies;
+
+    // remainingMovies에서 선택되지 않은 영화도 제거하여 다음 라운드에 포함되지 않도록 함
     const updatedMovies = remainingMovies.filter(
-      (movie) => movie.id !== selectedMovie.id
+      (movie) => movie.id !== firstMovie.id && movie.id !== secondMovie.id
     );
 
+    // 선택된 영화만 selectedMovies에 추가
     const updatedSelectedMovies = [...selectedMovies, selectedMovie];
 
     setRemainingMovies(updatedMovies);
     setSelectedMovies(updatedSelectedMovies);
 
-    saveToLoacalStorage("remainingMovies", updatedMovies);
-    saveToLoacalStorage("selectedMovies", updatedSelectedMovies);
+    // 로컬 스토리지에 업데이트된 상태 저장
+    saveToLocalStorage("remainingMovies", updatedMovies);
+    saveToLocalStorage("selectedMovies", updatedSelectedMovies);
 
+    // 다음 라운드 설정
     if (updatedMovies.length >= 2) {
-      setCurrentMovies(RandomMovies());
-    } else if (selectedMovies.length >= 2) {
-      setRemainingMovies(selectedMovie);
-      setSelectedMovies([]);
-      saveToLoacalStorage("remainingMovies", selectedMovies);
-      saveToLoacalStorage("selectedMovies", []);
+      setCurrentMovies(RandomMovies(updatedMovies));
+      setRound((prev) => {
+        const newRound = { ...prev, current: prev.current + 1 };
+        saveToLocalStorage("round", newRound);
+        return newRound;
+      });
+    } else if (updatedSelectedMovies.length === 1) {
+      // 결승전 우승 영화가 선택된 경우 우승 영화 페이지로 이동
+      navigate(`/Ending/${selectedMovie.id}`);
+    } else if (updatedSelectedMovies.length >= 2) {
+      // 다음 라운드로 전환
+      const newRoundTotal = updatedSelectedMovies.length / 2;
+      setRemainingMovies(updatedSelectedMovies);
+      setSelectedMovies([]); // 초기화
+      setRound({ totalRounds: newRoundTotal, current: 1 });
+
+      // 로컬 스토리지 업데이트
+      saveToLocalStorage("remainingMovies", updatedSelectedMovies);
+      saveToLocalStorage("selectedMovies", []); // 로컬 스토리지에서도 초기화
+      saveToLocalStorage("round", { totalRounds: newRoundTotal, current: 1 });
     }
   };
 
+  // 랜덤으로 영화 두 개 선택
+  const RandomMovies = (movies) => {
+    if (movies.length < 2) return [];
+    const mix = [...movies].sort(() => 0.5 - Math.random());
+    return [mix[0], mix[1]];
+  };
+
+  // remainingMovies가 초기화되었을 때 새 라운드를 위해 currentMovies 설정
   useEffect(() => {
-    setCurrentMovies(RandomMovies());
-  }, []);
+    if (selectedMovies.length === 0 && remainingMovies.length >= 2) {
+      setCurrentMovies(RandomMovies(remainingMovies));
+    }
+  }, [remainingMovies, selectedMovies]);
 
   useEffect(() => {
     const fetchMovies = async () => {
-      setIsloading(true);
+      setIsLoading(true);
       try {
         const movieData1 = await movieDetail(currentMovies[0]?.id);
         const movieData2 = await movieDetail(currentMovies[1]?.id);
         setData([movieData1, movieData2]);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
-        setIsloading(false);
+        setIsLoading(false);
       }
     };
     if (currentMovies.length === 2) fetchMovies();
   }, [currentMovies]);
 
-  // console.log(data);
+  const displayRoundTitle = () => {
+    if (round.totalRounds === 1) return "결승전";
+    return `${round.totalRounds * 2}강 ${round.current}/${round.totalRounds}`;
+  };
+
   return (
     <>
       {isLoading ? (
-        <Loading></Loading>
+        <Loading />
       ) : (
         <>
-          <Header></Header>
+          <Header />
           <Container>
             <Title>
-              <h4>32강 월드컵 </h4>
+              <h4>{displayRoundTitle()}</h4>
             </Title>
             <Main>
-              <HintWrap></HintWrap>
+              <HintWrap />
               <Poster
                 $coverImg={data[0]?.poster_path}
                 onClick={() => handleMovieSelect(currentMovies[0])}
-              ></Poster>
+              />
               <p>vs</p>
               <Poster
                 $coverImg={data[1]?.poster_path}
                 onClick={() => handleMovieSelect(currentMovies[1])}
-              ></Poster>
-
-              <HintWrap></HintWrap>
+              />
+              <HintWrap />
             </Main>
             <ShowWrap>
-              <Show></Show>
-              <Show></Show>
-              <Show></Show>
+              <Show />
+              <Show />
+              <Show />
             </ShowWrap>
           </Container>
         </>
