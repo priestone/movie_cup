@@ -74,6 +74,10 @@ const GoHome = styled.button`
   align-items: center;
   padding: 0 10px;
   border-radius: 5px;
+  &:hover span {
+    transform: translateX(50px);
+    transition: 0.5s;
+  }
 `;
 
 const Ending = () => {

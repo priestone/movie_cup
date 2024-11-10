@@ -86,11 +86,20 @@ const Main = styled.div`
     font-weight: 900;
     text-align: center;
   }
+  h5 {
+    width: 100px;
+    height: 543px;
+    line-height: 543px;
+    font-size: 30px;
+    font-weight: 900;
+    text-align: center;
+  }
 `;
 
 const HintWrap = styled.div`
   width: 275px;
   height: 600px;
+  padding: 0 75px;
   /* background-color: lightgray; */
   @media screen and (max-width: 1400px) {
     width: 15%;
@@ -99,13 +108,18 @@ const HintWrap = styled.div`
 `;
 
 const Score = styled.div`
-  display: flex;
+  text-align: center;
+  display: ${(props) => (props.scoreLight ? "block" : "none")};
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+
   h2 {
     font-size: 20px;
   }
+
   p {
+    width: 100%;
     margin-top: 13px;
     margin-bottom: 50px;
     font-size: 40px;
@@ -113,15 +127,16 @@ const Score = styled.div`
 `;
 
 const Credits = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  width: 125px;
+  text-align: center;
+  padding: 0 12px;
+  display: ${(props) => (props.creditLight ? "block" : "none")};
   p {
     width: 150px;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 20px;
+    transform: translateX(-22px);
   }
 `;
 
@@ -142,6 +157,7 @@ const Poster = styled.div`
   justify-content: center;
   align-items: center;
   object-fit: cover;
+  cursor: pointer;
   img {
     width: 110%;
   }
@@ -162,6 +178,7 @@ const ShowWrap = styled.div`
   position: absolute;
   top: 10px;
   right: 30px;
+  z-index: 990;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -177,6 +194,7 @@ const Show = styled.button`
   font-weight: 600;
   color: #1d1d1d;
   text-align: center;
+  cursor: pointer;
 `;
 
 // 로컬 스토리지 함수
@@ -207,6 +225,9 @@ const Ground = () => {
     loadFromLocalStorage("round") || { totalRounds: 16, current: 1 }
   );
 
+  const [scoreLight, setScoreLight] = useState(false);
+  const [creditLight, setCreditLight] = useState(false);
+
   // 선택된 영화 핸들링
   const handleMovieSelect = (selectedMovie) => {
     // 현재 대진 중인 두 영화의 ID를 가져옴
@@ -222,6 +243,9 @@ const Ground = () => {
 
     setRemainingMovies(updatedMovies);
     setSelectedMovies(updatedSelectedMovies);
+
+    setScoreLight(false);
+    setCreditLight(false);
 
     // 로컬 스토리지에 업데이트된 상태 저장
     saveToLocalStorage("대기중인 영화", updatedMovies);
@@ -292,6 +316,24 @@ const Ground = () => {
     return `${round.totalRounds * 2}강 ${round.current}/${round.totalRounds}`;
   };
 
+  const toggleScore = () => setScoreLight(!scoreLight);
+  const toggleCredit = () => setCreditLight(!creditLight);
+
+  const handleReset = () => {
+    // remainingMovies 배열을 랜덤하게 섞기
+    const shuffledMovies = [...remainingMovies].sort(() => Math.random() - 0.5);
+
+    // 상태 업데이트: 섞인 영화로 remainingMovies를 설정하고 현재 라운드 재설정
+    setRemainingMovies(shuffledMovies);
+    setCurrentMovies(RandomMovies(shuffledMovies)); // 첫 대진 두 영화를 랜덤하게 설정
+    setScoreLight(false); // 평점과 출연진 초기화
+    setCreditLight(false);
+
+    // 로컬 스토리지에도 업데이트된 상태를 저장
+    saveToLocalStorage("remainingMovies", shuffledMovies);
+    saveToLocalStorage("currentMovies", RandomMovies(shuffledMovies));
+  };
+
   return (
     <>
       {isLoading ? (
@@ -305,11 +347,11 @@ const Ground = () => {
             </Title>
             <Main>
               <HintWrap>
-                <Score>
+                <Score scoreLight={scoreLight}>
                   <h2>평점</h2>
                   <p>{data[0].vote_average}</p>
                 </Score>
-                <Credits>
+                <Credits creditLight={creditLight}>
                   <Person>
                     <img
                       src={W500_URL + firstcredit.cast[0].profile_path}
@@ -337,16 +379,16 @@ const Ground = () => {
                 <img src={W500_URL + data[0].poster_path} alt={data[0].title} />
               </Poster>
 
-              <p>vs</p>
+              <h5>vs</h5>
               <Poster onClick={() => handleMovieSelect(currentMovies[1])}>
                 <img src={W500_URL + data[1].poster_path} alt={data[1].title} />
               </Poster>
               <HintWrap>
-                <Score>
+                <Score scoreLight={scoreLight}>
                   <h2>평점</h2>
                   <p>{data[1].vote_average}</p>
                 </Score>
-                <Credits>
+                <Credits creditLight={creditLight}>
                   <Person>
                     <img
                       src={W500_URL + secondcredit.cast[0].profile_path}
@@ -372,9 +414,9 @@ const Ground = () => {
               </HintWrap>
             </Main>
             <ShowWrap>
-              <Show>평점</Show>
-              <Show>출연진</Show>
-              <Show>리셋</Show>
+              <Show onClick={toggleScore}>평점</Show>
+              <Show onClick={toggleCredit}>출연진</Show>
+              <Show onClick={handleReset}>리셋</Show>
             </ShowWrap>
           </Container>
         </>
@@ -384,15 +426,3 @@ const Ground = () => {
 };
 
 export default Ground;
-
-// useEffect(() => {
-//   (async () => {
-//     try {
-//       const movieData = await movieDetail();
-//       setData(movieData);
-//       setIsloading(false);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   })();
-// }, []);
