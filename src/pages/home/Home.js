@@ -54,10 +54,16 @@ const Start = styled.button`
   all: unset;
   width: 300px;
   height: 50px;
-  border: 1px solid white;
+  font-size: 24px;
+  border: 2px solid white;
   border-radius: 50px;
   text-align: center;
   cursor: pointer;
+  &:hover {
+    background-color: white;
+    color: #1d1d1d;
+    font-weight: 700;
+  }
 `;
 
 const Home = () => {

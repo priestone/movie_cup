@@ -158,8 +158,13 @@ const Poster = styled.div`
   align-items: center;
   object-fit: cover;
   cursor: pointer;
+
   img {
     width: 110%;
+    &:hover {
+      transform: scale(1.05);
+      transition: 0.5s;
+    }
   }
 
   /* background: url(${ORIGINAL_URL}${(props) =>
@@ -173,28 +178,33 @@ const Poster = styled.div`
 `;
 
 const ShowWrap = styled.div`
-  width: 260px;
+  width: 100%;
   /* margin: 10px auto; */
-  position: absolute;
-  top: 10px;
-  right: 30px;
-  z-index: 990;
+  /* /* position: absolute;
+  bottom: 100px;
+  left: 40%;
+  z-index: 990; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
 const Show = styled.button`
   all: unset;
-  width: 80px;
-  height: 50px;
+  width: 100px;
+  height: 60px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 50px;
   font-size: 20px;
   font-weight: 600;
   color: #1d1d1d;
   text-align: center;
+  margin: 0 50px;
   cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 15px white;
+    color: black;
+  }
 `;
 
 // 로컬 스토리지 함수
