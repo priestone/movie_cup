@@ -72,7 +72,7 @@
 [x] npm i node-fetch
 [x] npm i styled-components
 [x] npm i styled-reset
-[] npm i react-spinners
-[] font-awesome
+[x] npm i react-spinners
+[x] font-awesome
 [x] npm i react-hook-form
 [] helmet-async

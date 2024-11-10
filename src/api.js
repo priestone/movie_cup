@@ -17,3 +17,6 @@ const url = (urlName) => {
 
 export const movieDetail = (id) =>
   fetch(url(`movie/${id}`), options).then((res) => res.json());
+
+export const movieCredits = (id) =>
+  fetch(url(`movie/${id}/credits`), options).then((res) => res.json());

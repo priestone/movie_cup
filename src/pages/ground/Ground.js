@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
-import { movieDetail } from "../../api";
+import { movieCredits, movieDetail } from "../../api";
 import Loading from "../../components/Loading";
-import { ORIGINAL_URL } from "../../lib/imgUrl";
+import { ORIGINAL_URL, W500_URL } from "../../lib/imgUrl";
 import { useNavigate } from "react-router-dom";
 
 const moviedatas = [
@@ -44,29 +44,42 @@ const moviedatas = [
 const Container = styled.div`
   width: 100%;
   padding: 0 135px;
+  @media screen and (max-width: 1400px) {
+    padding: 0 30px;
+  }
 `;
 
 const Title = styled.div`
   width: 100%;
   height: 120px;
   display: flex;
-  justify-content: center;
   align-items: center;
   h4 {
     width: 300px;
     height: 50px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
     font-size: 30px;
     text-align: center;
     line-height: 50px;
     color: white;
     background-color: rgba(255, 255, 255, 0.3);
+    @media screen and (max-width: 1400px) {
+      width: 150px;
+      height: 30px;
+      font-size: 20px;
+      line-height: 30px;
+    }
   }
 `;
 
 const Main = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   p {
     width: 100px;
     font-size: 30px;
@@ -77,21 +90,78 @@ const Main = styled.div`
 
 const HintWrap = styled.div`
   width: 275px;
-  height: 715px;
-  background-color: lightgray;
+  height: 600px;
+  /* background-color: lightgray; */
+  @media screen and (max-width: 1400px) {
+    width: 15%;
+    /* height: 430px; */
+  }
+`;
+
+const Score = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-size: 20px;
+  }
+  p {
+    margin-top: 13px;
+    margin-bottom: 50px;
+    font-size: 40px;
+  }
+`;
+
+const Credits = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  p {
+    width: 150px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+`;
+
+const Person = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  overflow: hidden;
 `;
 
 const Poster = styled.div`
-  width: 500px;
-  height: 715px;
-  background-color: salmon;
-  background: url(${ORIGINAL_URL}${(props) => props.$coverImg}) no-repeat center /
-    cover;
+  width: 380px;
+  height: 543px;
+  /* background-color: salmon; */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  img {
+    width: 110%;
+  }
+
+  /* background: url(${ORIGINAL_URL}${(props) =>
+    props.$coverImg}) no-repeat center /
+    cover; */
+
+  @media screen and (max-width: 1400px) {
+    width: 30%;
+    /* height: 430px; */
+  }
 `;
 
 const ShowWrap = styled.div`
-  width: 600px;
-  margin: 10px auto;
+  width: 260px;
+  /* margin: 10px auto; */
+  position: absolute;
+  top: 10px;
+  right: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -99,10 +169,14 @@ const ShowWrap = styled.div`
 
 const Show = styled.button`
   all: unset;
-  width: 120px;
-  height: 80px;
+  width: 80px;
+  height: 50px;
   background-color: white;
   border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1d;
+  text-align: center;
 `;
 
 // 로컬 스토리지 함수
@@ -118,6 +192,8 @@ const loadFromLocalStorage = (key) => {
 const Ground = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([null, null]);
+  const [firstcredit, setFirstcredit] = useState();
+  const [secondcredit, setSecondcredit] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [remainingMovies, setRemainingMovies] = useState(
     loadFromLocalStorage("remainingMovies") || moviedatas
@@ -148,8 +224,8 @@ const Ground = () => {
     setSelectedMovies(updatedSelectedMovies);
 
     // 로컬 스토리지에 업데이트된 상태 저장
-    saveToLocalStorage("remainingMovies", updatedMovies);
-    saveToLocalStorage("selectedMovies", updatedSelectedMovies);
+    saveToLocalStorage("대기중인 영화", updatedMovies);
+    saveToLocalStorage("내가 선택한 영화", updatedSelectedMovies);
 
     // 다음 라운드 설정
     if (updatedMovies.length >= 2) {
@@ -196,7 +272,12 @@ const Ground = () => {
       try {
         const movieData1 = await movieDetail(currentMovies[0]?.id);
         const movieData2 = await movieDetail(currentMovies[1]?.id);
+        const moviePerson1 = await movieCredits(currentMovies[0]?.id);
+        const moviePerson2 = await movieCredits(currentMovies[1]?.id);
+        setFirstcredit(moviePerson1);
+        setSecondcredit(moviePerson2);
         setData([movieData1, movieData2]);
+        // console.log(moviePerson);
       } catch (error) {
         console.error(error);
       } finally {
@@ -223,22 +304,77 @@ const Ground = () => {
               <h4>{displayRoundTitle()}</h4>
             </Title>
             <Main>
-              <HintWrap />
-              <Poster
-                $coverImg={data[0]?.poster_path}
-                onClick={() => handleMovieSelect(currentMovies[0])}
-              />
+              <HintWrap>
+                <Score>
+                  <h2>평점</h2>
+                  <p>{data[0].vote_average}</p>
+                </Score>
+                <Credits>
+                  <Person>
+                    <img
+                      src={W500_URL + firstcredit.cast[0].profile_path}
+                      alt={firstcredit.cast[0].name}
+                    />
+                  </Person>
+                  <p>{firstcredit.cast[0].name}</p>
+                  <Person>
+                    <img
+                      src={W500_URL + firstcredit.cast[1].profile_path}
+                      alt={firstcredit.cast[1].name}
+                    />
+                  </Person>
+                  <p>{firstcredit.cast[1].name}</p>
+                  <Person>
+                    <img
+                      src={W500_URL + firstcredit.cast[2].profile_path}
+                      alt={firstcredit.cast[2].name}
+                    />
+                  </Person>
+                  <p>{firstcredit.cast[2].name}</p>
+                </Credits>
+              </HintWrap>
+              <Poster onClick={() => handleMovieSelect(currentMovies[0])}>
+                <img src={W500_URL + data[0].poster_path} alt={data[0].title} />
+              </Poster>
+
               <p>vs</p>
-              <Poster
-                $coverImg={data[1]?.poster_path}
-                onClick={() => handleMovieSelect(currentMovies[1])}
-              />
-              <HintWrap />
+              <Poster onClick={() => handleMovieSelect(currentMovies[1])}>
+                <img src={W500_URL + data[1].poster_path} alt={data[1].title} />
+              </Poster>
+              <HintWrap>
+                <Score>
+                  <h2>평점</h2>
+                  <p>{data[1].vote_average}</p>
+                </Score>
+                <Credits>
+                  <Person>
+                    <img
+                      src={W500_URL + secondcredit.cast[0].profile_path}
+                      alt={secondcredit.cast[0].name}
+                    />
+                  </Person>
+                  <p>{secondcredit.cast[0].name}</p>
+                  <Person>
+                    <img
+                      src={W500_URL + secondcredit.cast[1].profile_path}
+                      alt={secondcredit.cast[1].name}
+                    />
+                  </Person>
+                  <p>{secondcredit.cast[1].name}</p>
+                  <Person>
+                    <img
+                      src={W500_URL + secondcredit.cast[2].profile_path}
+                      alt={secondcredit.cast[2].name}
+                    />
+                  </Person>
+                  <p>{secondcredit.cast[2].name}</p>
+                </Credits>
+              </HintWrap>
             </Main>
             <ShowWrap>
-              <Show />
-              <Show />
-              <Show />
+              <Show>평점</Show>
+              <Show>출연진</Show>
+              <Show>리셋</Show>
             </ShowWrap>
           </Container>
         </>
