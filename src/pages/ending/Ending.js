@@ -16,7 +16,7 @@ const Head = styled.h2`
 `;
 
 const Container = styled.div`
-  padding: 150px 15%;
+  padding: 150px 20%;
   display: flex;
   justify-content: space-between;
 
@@ -34,45 +34,58 @@ const Poster = styled.div`
 `;
 
 const TextWrap = styled.div`
+  /* display: flex;
+  flex-direction: column; */
+  position: relative;
   width: 45%;
   h2 {
     font-size: 50px;
     font-weight: 700;
   }
   p {
-    margin: 30px 0;
+    margin: 20px 0;
     font-size: 20px;
   }
 
   ul {
-    margin: 10px 0;
+    margin-top: 50px;
+    margin-bottom: 30px;
   }
   li {
     font-size: 20px;
     margin: 10px 0;
   }
 
+  h5 {
+    font-size: 18px;
+    line-height: 18px;
+    opacity: 0.9;
+  }
+
   span {
-    font-size: 16px;
     opacity: 0.8;
     font-weight: 100;
     letter-spacing: 1px;
     line-height: 30px;
   }
+
+  a {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 `;
 
 const GoHome = styled.button`
   all: unset;
+
   width: 150px;
   height: 50px;
+  padding: 0 10px;
   border: 1px solid white;
-  position: absolute;
-  bottom: 30px;
-  left: 54%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
   border-radius: 5px;
   &:hover span {
     transform: translateX(50px);
@@ -116,25 +129,27 @@ const Ending = () => {
             ></Poster>
             <TextWrap>
               <h2>{data.title}</h2>
-              <p>평점 : {data.vote_average}</p>
-              <p>러닝타임 : {data.runtime}</p>
+              <p>평점 : {data.vote_average} 점</p>
+              <p>러닝타임 : {data.runtime} 분</p>
               <p>개봉일 : {data.release_date}</p>
               <ul>
                 {data.genres.map((genre) => (
                   <li key={genre.id}>- {genre.name}</li>
                 ))}
               </ul>
+              <h5>줄거리</h5>
+              <br></br>
               <span>{data.overview.slice(0, 300)}...</span>
+              <Link to="/#">
+                <GoHome>
+                  <span>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </span>
+                  <p>다시하기</p>
+                </GoHome>
+              </Link>
             </TextWrap>
           </Container>
-          <Link to="/#">
-            <GoHome>
-              <span>
-                <FontAwesomeIcon icon={faArrowRight} />
-              </span>
-              <p>홈 이동</p>
-            </GoHome>
-          </Link>
         </>
       )}
     </>

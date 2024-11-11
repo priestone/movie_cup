@@ -41,116 +41,297 @@ const moviedatas = [
   { num: 31, id: 42190, title: "클래식" },
 ];
 
+const Bg_1 = styled.div`
+  display: none;
+  @media screen and (max-width: 440px) {
+    position: absolute;
+    top: 93px;
+    left: 0;
+    z-index: -10;
+    font-size: 20px;
+    line-height: 30px;
+    width: 95%;
+    height: 250px;
+    background-color: gray;
+    display: block;
+  }
+`;
+
+const Bg_2 = styled.div`
+  display: none;
+  @media screen and (max-width: 440px) {
+    position: absolute;
+    bottom: 233px;
+    right: 0;
+    z-index: -10;
+    font-size: 20px;
+    line-height: 30px;
+    width: 95%;
+    height: 250px;
+    background-color: gray;
+    display: block;
+  }
+`;
+
 const Container = styled.div`
-  width: 100%;
-  padding: 0 135px;
-  @media screen and (max-width: 1400px) {
-    padding: 0 30px;
+  /* width: 100%; */
+  /* padding: 0 135px; */
+  display: flex;
+  /* flex-direction: row;
+  padding: 0 30px;
+  height: 100vh; */
+  /* @media screen and (min-width: 441px) {
+    flex-direction: row;
+  } */
+
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    height: 550px;
+    /* display: flex; */
+    flex-direction: column;
+    /* margin-top: 30px; */
+    /* padding: 0 15px; */
   }
 `;
 
 const Title = styled.div`
   width: 100%;
-  height: 120px;
-  display: flex;
-  align-items: center;
+  /* height: 120px; */
+  /* display: flex; */
+  /* position: absolute; */
+  /* align-items: center; */
   h4 {
-    width: 300px;
-    height: 50px;
     position: absolute;
     top: 50px;
     left: 50%;
+    width: 300px;
+    height: 50px;
     transform: translate(-50%, 0);
     font-size: 30px;
     text-align: center;
     line-height: 50px;
     color: white;
     background-color: rgba(255, 255, 255, 0.3);
-    @media screen and (max-width: 1400px) {
-      width: 150px;
-      height: 30px;
-      font-size: 20px;
-      line-height: 30px;
+    border-radius: 30px;
+  }
+  @media screen and (min-width: 441px) {
+    width: 150px;
+    /* height: 30px; */
+    font-size: 20px;
+    position: absolute;
+    line-height: 30px;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    margin-bottom: 63px;
+    height: 30px;
+
+    h4 {
+      width: 100px;
+      height: 20px;
+      font-size: 14px;
+      line-height: 20px;
     }
   }
 `;
 
 const Main = styled.div`
-  width: 100%;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
   display: flex;
-  justify-content: center;
-  align-items: start;
-  p {
-    width: 100px;
-    font-size: 30px;
-    font-weight: 900;
-    text-align: center;
-  }
+  /* position: relative; */
+  width: 100%;
+  height: 100%;
   h5 {
-    width: 100px;
-    height: 543px;
-    line-height: 543px;
-    font-size: 30px;
-    font-weight: 900;
     text-align: center;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    /* transform: translateX(-2px); */
+    /* height: 10px; */
+  }
+
+  @media screen and (min-width: 441px) {
+    max-width: 1785px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 75px;
+    p {
+      width: 100px;
+      font-size: 30px;
+      font-weight: 900;
+      text-align: center;
+    }
+    h5 {
+      /* width: 100px; */
+      /* height: 543px; */
+      /* line-height: 543px; */
+      width: 50px;
+      height: auto;
+      font-size: 30px;
+      font-weight: 900;
+      text-align: center;
+    }
   }
 `;
 
-const HintWrap = styled.div`
-  width: 275px;
-  height: 600px;
-  padding: 0 75px;
-  /* background-color: lightgray; */
-  @media screen and (max-width: 1400px) {
-    width: 15%;
+const Mo_1 = styled.div`
+  display: flex;
+  width: 100%;
+  height: 250px;
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  justify-content: end;
+  align-items: center;
+  padding: 0 7% 0 0;
+  @media screen and (min-width: 441px) {
+    position: unset;
+    /* width: 39%; */
+    width: 500px;
+    height: 85%;
+    padding: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1400px) {
+  }
+`;
+
+const Mo_2 = styled.div`
+  display: flex;
+  width: 100%;
+  height: 48%;
+  /* position: absolute;
+  bottom: 0;
+  right: 0; */
+  justify-content: start;
+  padding: 0 0 0 7%;
+  @media screen and (min-width: 441px) {
+    position: unset;
+    width: 500px;
+    /* width: 39%; */
+    height: 85%;
+    padding: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @media screen and (min-width: 1400px) {
+  }
+`;
+
+const HintWrap_1 = styled.div`
+  /* margin-right: 30px; */
+  @media screen and (min-width: 1401px) {
+    /* width: 100px; */
     /* height: 430px; */
   }
+  @media screen and (min-width: 441px) {
+    /* height: 300px; */
+    margin: 0 10px;
+  }
+`;
+const HintWrap_2 = styled.div`
+  /* margin-left: 30px; */
+  /* width: 100px; */
+  @media screen and (min-width: 1401px) {
+    /* height: 430px; */
+  }
+  @media screen and (min-width: 441px) {
+    /* height: 300px; */
+    margin: 0 10px;
+  }
 `;
 
-const Score = styled.div`
+const Score = styled.div.attrs((props) => ({
+  style: {
+    display: props.scoreLight ? "block" : "none",
+  },
+}))`
   text-align: center;
-  display: ${(props) => (props.scoreLight ? "block" : "none")};
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-
   h2 {
     font-size: 20px;
   }
-
   p {
     width: 100%;
     margin-top: 13px;
     margin-bottom: 50px;
     font-size: 40px;
   }
+  @media screen and (max-width: 440px) {
+    h2 {
+      font-size: 14px;
+    }
+    p {
+      margin-top: 13px;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+  }
 `;
 
-const Credits = styled.div`
-  width: 125px;
+const Credits = styled.div.attrs((props) => ({
+  style: {
+    display: props.creditLight ? "block" : "none",
+  },
+}))`
+  /* width: 125px; */
   text-align: center;
-  padding: 0 12px;
-  display: ${(props) => (props.creditLight ? "block" : "none")};
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  /* display: ${(props) => (props.creditLight ? "block" : "none")}; */
+
   p {
-    width: 150px;
+    /* width: 150px; */
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 20px;
-    transform: translateX(-22px);
+    /* transform: translateX(-40px); */
+  }
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    /* padding: 0 2px; */
+    p {
+      /* width: 100px; */
+      font-size: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
   }
 `;
 
 const Person = styled.div`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
+  width: 35px;
+  height: 35px;
+  margin: 5px auto;
   overflow: hidden;
+  border-radius: 50%;
+
+  @media screen and (min-width: 441px) {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
 `;
 
 const Poster = styled.div`
-  width: 380px;
-  height: 543px;
+  /* width: 380px;
+  height: 543px; */
+  width: 312px;
+  height: 449px;
+  /* margin: 0 30px; */
   /* background-color: salmon; */
   overflow: hidden;
   display: flex;
@@ -166,27 +347,47 @@ const Poster = styled.div`
       transition: 0.5s;
     }
   }
-
-  /* background: url(${ORIGINAL_URL}${(props) =>
-    props.$coverImg}) no-repeat center /
-    cover; */
-
   @media screen and (max-width: 1400px) {
-    width: 30%;
-    /* height: 430px; */
+    width: 250px;
+    height: 370px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+    height: 370px;
+  }
+  @media screen and (max-width: 440px) {
+    /* align-items: start; */
+    width: 50%;
+    height: 250px;
+    padding: 5%;
+    img {
+      width: 100%;
+      &:hover {
+        transform: scale(1);
+        transition: 0s;
+      }
+    }
   }
 `;
 
 const ShowWrap = styled.div`
   width: 100%;
-  /* margin: 10px auto; */
-  /* /* position: absolute;
+  position: absolute;
   bottom: 100px;
-  left: 40%;
-  z-index: 990; */
+  left: 0%;
+  z-index: 990;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    position: absolute;
+    bottom: 18%;
+    left: 0%;
+    z-index: 990;
+    margin-top: 10px;
+  }
 `;
 
 const Show = styled.button`
@@ -204,6 +405,16 @@ const Show = styled.button`
   &:hover {
     box-shadow: 0px 0px 15px white;
     color: black;
+  }
+  @media screen and (max-width: 440px) {
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+    margin: 0 30px;
+    &:hover {
+      box-shadow: 0px 0px 0px white;
+      color: black;
+    }
   }
 `;
 
@@ -351,84 +562,96 @@ const Ground = () => {
       ) : (
         <>
           <Header />
+          <Bg_1></Bg_1>
+          <Bg_2></Bg_2>
+          <Title>
+            <h4>{displayRoundTitle()}</h4>
+          </Title>
           <Container>
-            <Title>
-              <h4>{displayRoundTitle()}</h4>
-            </Title>
             <Main>
-              <HintWrap>
-                <Score scoreLight={scoreLight}>
-                  <h2>평점</h2>
-                  <p>{data[0].vote_average}</p>
-                </Score>
-                <Credits creditLight={creditLight}>
-                  <Person>
-                    <img
-                      src={W500_URL + firstcredit.cast[0].profile_path}
-                      alt={firstcredit.cast[0].name}
-                    />
-                  </Person>
-                  <p>{firstcredit.cast[0].name}</p>
-                  <Person>
-                    <img
-                      src={W500_URL + firstcredit.cast[1].profile_path}
-                      alt={firstcredit.cast[1].name}
-                    />
-                  </Person>
-                  <p>{firstcredit.cast[1].name}</p>
-                  <Person>
-                    <img
-                      src={W500_URL + firstcredit.cast[2].profile_path}
-                      alt={firstcredit.cast[2].name}
-                    />
-                  </Person>
-                  <p>{firstcredit.cast[2].name}</p>
-                </Credits>
-              </HintWrap>
-              <Poster onClick={() => handleMovieSelect(currentMovies[0])}>
-                <img src={W500_URL + data[0].poster_path} alt={data[0].title} />
-              </Poster>
+              <Mo_1>
+                <HintWrap_1>
+                  <Score scoreLight={scoreLight}>
+                    <h2>평점</h2>
+                    <p>{data[0].vote_average}</p>
+                  </Score>
+                  <Credits creditLight={creditLight}>
+                    <Person>
+                      <img
+                        src={W500_URL + firstcredit.cast[0].profile_path}
+                        alt={firstcredit.cast[0].name}
+                      />
+                    </Person>
+                    <p>{firstcredit.cast[0].name}</p>
+                    <Person>
+                      <img
+                        src={W500_URL + firstcredit.cast[1].profile_path}
+                        alt={firstcredit.cast[1].name}
+                      />
+                    </Person>
+                    <p>{firstcredit.cast[1].name}</p>
+                    <Person>
+                      <img
+                        src={W500_URL + firstcredit.cast[2].profile_path}
+                        alt={firstcredit.cast[2].name}
+                      />
+                    </Person>
+                    <p>{firstcredit.cast[2].name}</p>
+                  </Credits>
+                </HintWrap_1>
+                <Poster onClick={() => handleMovieSelect(currentMovies[0])}>
+                  <img
+                    src={W500_URL + data[0].poster_path}
+                    alt={data[0].title}
+                  />
+                </Poster>
+              </Mo_1>
 
               <h5>vs</h5>
-              <Poster onClick={() => handleMovieSelect(currentMovies[1])}>
-                <img src={W500_URL + data[1].poster_path} alt={data[1].title} />
-              </Poster>
-              <HintWrap>
-                <Score scoreLight={scoreLight}>
-                  <h2>평점</h2>
-                  <p>{data[1].vote_average}</p>
-                </Score>
-                <Credits creditLight={creditLight}>
-                  <Person>
-                    <img
-                      src={W500_URL + secondcredit.cast[0].profile_path}
-                      alt={secondcredit.cast[0].name}
-                    />
-                  </Person>
-                  <p>{secondcredit.cast[0].name}</p>
-                  <Person>
-                    <img
-                      src={W500_URL + secondcredit.cast[1].profile_path}
-                      alt={secondcredit.cast[1].name}
-                    />
-                  </Person>
-                  <p>{secondcredit.cast[1].name}</p>
-                  <Person>
-                    <img
-                      src={W500_URL + secondcredit.cast[2].profile_path}
-                      alt={secondcredit.cast[2].name}
-                    />
-                  </Person>
-                  <p>{secondcredit.cast[2].name}</p>
-                </Credits>
-              </HintWrap>
+              <Mo_2>
+                <Poster onClick={() => handleMovieSelect(currentMovies[1])}>
+                  <img
+                    src={W500_URL + data[1].poster_path}
+                    alt={data[1].title}
+                  />
+                </Poster>
+                <HintWrap_2>
+                  <Score scoreLight={scoreLight}>
+                    <h2>평점</h2>
+                    <p>{data[1].vote_average}</p>
+                  </Score>
+                  <Credits creditLight={creditLight}>
+                    <Person>
+                      <img
+                        src={W500_URL + secondcredit.cast[0].profile_path}
+                        alt={secondcredit.cast[0].name}
+                      />
+                    </Person>
+                    <p>{secondcredit.cast[0].name}</p>
+                    <Person>
+                      <img
+                        src={W500_URL + secondcredit.cast[1].profile_path}
+                        alt={secondcredit.cast[1].name}
+                      />
+                    </Person>
+                    <p>{secondcredit.cast[1].name}</p>
+                    <Person>
+                      <img
+                        src={W500_URL + secondcredit.cast[2].profile_path}
+                        alt={secondcredit.cast[2].name}
+                      />
+                    </Person>
+                    <p>{secondcredit.cast[2].name}</p>
+                  </Credits>
+                </HintWrap_2>
+              </Mo_2>
             </Main>
-            <ShowWrap>
-              <Show onClick={toggleScore}>평점</Show>
-              <Show onClick={toggleCredit}>출연진</Show>
-              <Show onClick={handleReset}>리셋</Show>
-            </ShowWrap>
           </Container>
+          <ShowWrap>
+            <Show onClick={toggleScore}>평점</Show>
+            <Show onClick={toggleCredit}>출연진</Show>
+            <Show onClick={handleReset}>리셋</Show>
+          </ShowWrap>
         </>
       )}
     </>

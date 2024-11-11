@@ -3,6 +3,7 @@ import reset from "styled-reset";
 
 export const headerStyle = {
   pcPadding: "20px 50px",
+  moPadding: "10px",
 };
 
 export const GlobalStyled = createGlobalStyle`

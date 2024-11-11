@@ -11,7 +11,7 @@ const Container = styled.div`
 const Credit = styled.div`
   width: 1323px;
   height: 100vh;
-  background-color: black;
+  /* background-color: black; */
   padding: 306px 360px 0 388px;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ const Credit = styled.div`
 
   h2 {
     font-size: 70px;
+    font-weight: 700;
   }
 `;
 
@@ -27,7 +28,8 @@ const TextWrap = styled.div`
   width: 600px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 120px;
+  margin-bottom: 80px;
+  font-weight: 300;
 `;
 
 const TextWrap1 = styled.div`
@@ -35,7 +37,7 @@ const TextWrap1 = styled.div`
   display: flex;
   align-items: end;
   margin: 0 auto;
-  font-size: 30px;
+  font-size: 24px;
   opacity: 0.6;
   flex-direction: column;
 `;
@@ -45,7 +47,7 @@ const TextWrap2 = styled.div`
   display: flex;
   align-items: start;
   margin: 0 auto;
-  font-size: 30px;
+  font-size: 24px;
   opacity: 0.6;
   flex-direction: column;
 `;

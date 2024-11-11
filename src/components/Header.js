@@ -11,11 +11,19 @@ const HeaderWrap = styled.div`
   a {
     width: 300px;
   }
+
+  @media screen and (max-width: 440px) {
+    height: 50px;
+    padding: ${headerStyle.moPadding};
+  }
 `;
 
 const Logo = styled.h2`
   font-size: 30px;
   font-family: "Gowun Batang", serif;
+  @media screen and (max-width: 440px) {
+    font-size: 16px;
+  }
 `;
 
 const Header = () => {
