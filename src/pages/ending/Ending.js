@@ -7,12 +7,22 @@ import { ORIGINAL_URL } from "../../lib/imgUrl";
 import Loading from "../../components/Loading";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PageTitle from "../../components/Wrapper";
 
 const Head = styled.h2`
   font-size: 40px;
   position: absolute;
   top: 50px;
-  left: 41%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media screen and (max-width: 1000px) {
+    font-size: 30px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    font-size: 20px;
+  }
 `;
 
 const Container = styled.div`
@@ -25,17 +35,33 @@ const Container = styled.div`
     bottom: 10px;
     left: 50%;
   }
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    padding: 100px 20% 15% 20%;
+  }
+
+  @media screen and (max-width: 440px) {
+    flex-direction: column;
+    padding: 90px 5% 15% 5%;
+  }
 `;
 
 const Poster = styled.div`
   width: 500px;
   height: 715px;
   background-color: gray;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    max-height: 500px;
+  }
 `;
 
 const TextWrap = styled.div`
-  /* display: flex;
-  flex-direction: column; */
   position: relative;
   width: 45%;
   h2 {
@@ -74,6 +100,46 @@ const TextWrap = styled.div`
     bottom: 0;
     left: 0;
   }
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    h2 {
+      font-size: 30px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    ul {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    li {
+      font-size: 16px;
+    }
+
+    h5 {
+      font-size: 16px;
+      line-height: 18px;
+      opacity: 0.9;
+    }
+
+    span {
+      font-size: 14px;
+      opacity: 0.8;
+      font-weight: 100;
+      letter-spacing: 1px;
+      line-height: 30px;
+    }
+
+    a {
+      bottom: -60px;
+    }
+  }
 `;
 
 const GoHome = styled.button`
@@ -90,6 +156,21 @@ const GoHome = styled.button`
   &:hover span {
     transform: translateX(50px);
     transition: 0.5s;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 100px;
+    &:hover span {
+      transform: translateX(20px);
+      transition: 0.5s;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    &:hover span {
+      transform: translateX(0);
+      transition: 0;
+    }
   }
 `;
 
@@ -118,8 +199,8 @@ const Ending = () => {
       ) : (
         <>
           <Header />
+          <Head>32강 우승 영화</Head>
           <Container>
-            <Head>32강 우승 영화</Head>
             <Poster
               style={{
                 background: `url(${
@@ -150,6 +231,7 @@ const Ending = () => {
               </Link>
             </TextWrap>
           </Container>
+          <PageTitle title={"락커룸"}></PageTitle>
         </>
       )}
     </>

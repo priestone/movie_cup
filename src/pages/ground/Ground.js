@@ -5,6 +5,7 @@ import { movieCredits, movieDetail } from "../../api";
 import Loading from "../../components/Loading";
 import { ORIGINAL_URL, W500_URL } from "../../lib/imgUrl";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "../../components/Wrapper";
 
 const moviedatas = [
   { num: 0, id: 278, title: "쇼생크 탈출" },
@@ -164,6 +165,7 @@ const Main = styled.div`
     align-items: center;
     flex-direction: row;
     padding: 0 75px;
+    margin: 0 auto;
     p {
       width: 100px;
       font-size: 30px;
@@ -254,12 +256,9 @@ const HintWrap_2 = styled.div`
   }
 `;
 
-const Score = styled.div.attrs((props) => ({
-  style: {
-    display: props.scoreLight ? "block" : "none",
-  },
-}))`
+const Score = styled.div`
   text-align: center;
+  display: ${(props) => (props.$scoreLight ? "block" : "none")};
   h2 {
     font-size: 20px;
   }
@@ -281,17 +280,13 @@ const Score = styled.div.attrs((props) => ({
   }
 `;
 
-const Credits = styled.div.attrs((props) => ({
-  style: {
-    display: props.creditLight ? "block" : "none",
-  },
-}))`
+const Credits = styled.div`
   /* width: 125px; */
   text-align: center;
   padding: 0;
   align-items: center;
   justify-content: center;
-  /* display: ${(props) => (props.creditLight ? "block" : "none")}; */
+  display: ${(props) => (props.$creditLight ? "block" : "none")};
 
   p {
     /* width: 150px; */
@@ -561,6 +556,8 @@ const Ground = () => {
         <Loading />
       ) : (
         <>
+          <PageTitle title={"경기장"}></PageTitle>
+
           <Header />
           <Bg_1></Bg_1>
           <Bg_2></Bg_2>
@@ -571,11 +568,11 @@ const Ground = () => {
             <Main>
               <Mo_1>
                 <HintWrap_1>
-                  <Score scoreLight={scoreLight}>
+                  <Score $scoreLight={scoreLight}>
                     <h2>평점</h2>
-                    <p>{data[0].vote_average}</p>
+                    <p>{Math.round(data[0].vote_average)}점</p>
                   </Score>
-                  <Credits creditLight={creditLight}>
+                  <Credits $creditLight={creditLight}>
                     <Person>
                       <img
                         src={W500_URL + firstcredit.cast[0].profile_path}
@@ -616,11 +613,11 @@ const Ground = () => {
                   />
                 </Poster>
                 <HintWrap_2>
-                  <Score scoreLight={scoreLight}>
+                  <Score $scoreLight={scoreLight}>
                     <h2>평점</h2>
-                    <p>{data[1].vote_average}</p>
+                    <p>{Math.round(data[1].vote_average)}점</p>
                   </Score>
-                  <Credits creditLight={creditLight}>
+                  <Credits $creditLight={creditLight}>
                     <Person>
                       <img
                         src={W500_URL + secondcredit.cast[0].profile_path}

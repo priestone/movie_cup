@@ -1,11 +1,27 @@
 import styled from "styled-components";
-import Header from "../../components/Header";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import PageTitle from "../../components/Wrapper";
+
+const Homeheader = styled.div`
+  font-size: 30px;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  font-family: "Gowun Batang", serif;
+  @media screen and (max-width: 440px) {
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
 `;
 
 const Credit = styled.div`
@@ -21,6 +37,20 @@ const Credit = styled.div`
     font-size: 70px;
     font-weight: 700;
   }
+
+  @media screen and (max-width: 1000px) {
+    h2 {
+      font-size: 50px;
+      font-weight: 700;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    h2 {
+      font-size: 44px;
+      font-weight: 600;
+    }
+  }
 `;
 
 const TextWrap = styled.div`
@@ -30,6 +60,16 @@ const TextWrap = styled.div`
   justify-content: space-between;
   margin-bottom: 80px;
   font-weight: 300;
+
+  @media screen and (max-width: 1000px) {
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
+
+  @media screen and (max-width: 440px) {
+    margin-top: 40px;
+    margin-bottom: 100px;
+  }
 `;
 
 const TextWrap1 = styled.div`
@@ -40,6 +80,16 @@ const TextWrap1 = styled.div`
   font-size: 24px;
   opacity: 0.6;
   flex-direction: column;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;
 
 const TextWrap2 = styled.div`
@@ -50,6 +100,15 @@ const TextWrap2 = styled.div`
   font-size: 24px;
   opacity: 0.6;
   flex-direction: column;
+  @media screen and (max-width: 1000px) {
+    line-height: 30px;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;
 
 const Start = styled.button`
@@ -66,6 +125,19 @@ const Start = styled.button`
     color: #1d1d1d;
     font-weight: 700;
   }
+
+  @media screen and (max-width: 1000px) {
+    font-size: 20px;
+    &:hover {
+      background-color: #1d1d1d;
+      color: white;
+      font-weight: 400;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    font-size: 16px;
+  }
 `;
 
 const Home = () => {
@@ -78,7 +150,7 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      <Homeheader>방구석 평론가</Homeheader>
       <Container>
         <Credit>
           <h2>영화 이상형 월드컵</h2>
@@ -95,6 +167,7 @@ const Home = () => {
           <Start onClick={handleStart}>시작</Start>
         </Credit>
       </Container>
+      <PageTitle title={"홈"}></PageTitle>
     </>
   );
 };
