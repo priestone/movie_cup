@@ -232,7 +232,7 @@ const Ending = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [id]);
 
   console.log(data);
   return (
