@@ -44,46 +44,6 @@ const moviedatas = [
   { num: 31, id: 42190, title: "클래식" },
 ];
 
-const Bg1 = styled.div`
-  display: none;
-  @media screen and (max-width: 440px) {
-    position: absolute;
-    /* top: 93px; */
-    left: 0;
-    top: 60px;
-    z-index: -10;
-    font-size: 20px;
-    line-height: 30px;
-    width: 95%;
-    height: 250px;
-    /* background-color: #eee7d7; */
-    border-top: 1px solid white;
-    border-right: 1px solid white;
-    border-bottom: 1px solid white;
-    display: none;
-  }
-`;
-
-const Bg2 = styled.div`
-  display: none;
-  @media screen and (max-width: 440px) {
-    position: absolute;
-    /* bottom: 187px; */
-    bottom: 221px;
-    right: 0;
-    z-index: -10;
-    font-size: 20px;
-    line-height: 30px;
-    width: 95%;
-    height: 250px;
-    /* background-color: #eee7d7; */
-    border-top: 1px solid white;
-    border-left: 1px solid white;
-    border-bottom: 1px solid white;
-    display: none;
-  }
-`;
-
 const Container = styled.div`
   /* width: 100%; */
   /* padding: 0 135px; */
@@ -434,6 +394,7 @@ const ShowWrap = styled.div`
     bottom: 100px;
     left: 0%;
     z-index: 990;
+    display: flex;
   }
 `;
 
@@ -611,8 +572,7 @@ const Ground = () => {
           <PageTitle title={"경기장"}></PageTitle>
 
           <Header />
-          <Bg1></Bg1>
-          <Bg2></Bg2>
+
           <Title>
             <h4>{displayRoundTitle()}</h4>
           </Title>
