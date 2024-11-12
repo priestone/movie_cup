@@ -29,7 +29,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://priestone.github.io/moive_app_24_10_31/#/",
+  "homepage": "https://github.com/priestone/movie_cup.git",
   "eslintConfig": {
     "extends": [
       "react-app",
