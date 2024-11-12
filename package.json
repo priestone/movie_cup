@@ -29,7 +29,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://github.com/priestone/movie_cup.git",
+  "homepage": "https://priestone.github.io/movie_cup/#/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -47,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
   }
 }
