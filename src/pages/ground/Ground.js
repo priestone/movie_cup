@@ -60,7 +60,7 @@ const Bg1 = styled.div`
     border-top: 1px solid white;
     border-right: 1px solid white;
     border-bottom: 1px solid white;
-    display: block;
+    display: none;
   }
 `;
 
@@ -69,7 +69,7 @@ const Bg2 = styled.div`
   @media screen and (max-width: 440px) {
     position: absolute;
     /* bottom: 187px; */
-    bottom: 60px;
+    bottom: 221px;
     right: 0;
     z-index: -10;
     font-size: 20px;
@@ -80,7 +80,7 @@ const Bg2 = styled.div`
     border-top: 1px solid white;
     border-left: 1px solid white;
     border-bottom: 1px solid white;
-    display: block;
+    display: none;
   }
 `;
 
@@ -97,7 +97,7 @@ const Container = styled.div`
 
   @media screen and (max-width: 440px) {
     width: 100%;
-    height: 550px;
+    height: 650px;
     /* display: flex; */
     flex-direction: column;
     /* margin-top: 30px; */
@@ -158,20 +158,17 @@ const Main = styled.div`
   display: flex;
   /* position: relative; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: space-between;
   h5 {
-    position: absolute;
-    top: 49%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-10%);
     font-size: 50px;
     color: crimson;
     font-weight: 900;
-    /* text-align: center;
-    width: 100%; */
+    text-align: center;
+    /* width: 100%; */
     /* height: 50px; */
-    /* line-height: 50px; */
+    line-height: 60px;
     /* height: 10px; */
   }
 
@@ -208,13 +205,15 @@ const Main = styled.div`
 const Mo1 = styled.div`
   display: flex;
   width: 100%;
-  height: 50%;
+  height: 250px;
   /* position: absolute;
   top: 0;
   left: 0; */
   justify-content: end;
   /* align-items: center; */
   padding: 0 7% 0 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
   @media screen and (min-width: 441px) {
     position: unset;
     /* width: 39%; */
@@ -224,6 +223,8 @@ const Mo1 = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-top: none;
+    border-bottom: none;
   }
 
   @media screen and (min-width: 1400px) {
@@ -233,10 +234,12 @@ const Mo1 = styled.div`
 const Mo2 = styled.div`
   display: flex;
   width: 100%;
-  height: 52%;
+  height: 250px;
   /* position: absolute;
   bottom: 0;
   right: 0; */
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
   justify-content: start;
   padding: 0 0 0 7%;
   @media screen and (min-width: 441px) {
@@ -248,6 +251,8 @@ const Mo2 = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: none;
+    border-bottom: none;
   }
   @media screen and (min-width: 1400px) {
   }
@@ -414,20 +419,21 @@ const Poster = styled.div`
 
 const ShowWrap = styled.div`
   width: 100%;
-  position: absolute;
-  bottom: 100px;
-  left: 0%;
-  z-index: 990;
+  /* position: absolute;
+  bottom: 15%;
+  left: 0%; */
+  /* z-index: 990; */
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 440px) {
+
+  @media screen and (min-width: 441px) {
     width: 100%;
     position: absolute;
-    bottom: 0%;
+    bottom: 100px;
     left: 0%;
     z-index: 990;
-    margin-top: 10px;
   }
 `;
 
@@ -695,13 +701,13 @@ const Ground = () => {
                   </Credits>
                 </HintWrap2>
               </Mo2>
+              <ShowWrap>
+                <Show onClick={toggleScore}>평점</Show>
+                <Show onClick={toggleCredit}>출연진</Show>
+                <Show onClick={handleReset}>리셋</Show>
+              </ShowWrap>
             </Main>
           </Container>
-          <ShowWrap>
-            <Show onClick={toggleScore}>평점</Show>
-            <Show onClick={toggleCredit}>출연진</Show>
-            <Show onClick={handleReset}>리셋</Show>
-          </ShowWrap>
         </>
       )}
     </>
