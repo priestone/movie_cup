@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/movie_cup/static/js/main.f8779ef3.js",
+    "index.html": "/movie_cup/index.html",
+    "main.f8779ef3.js.map": "/movie_cup/static/js/main.f8779ef3.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.f8779ef3.js"
+  ]
+}
