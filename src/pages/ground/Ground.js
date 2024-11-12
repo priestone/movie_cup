@@ -3,9 +3,11 @@ import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import { movieCredits, movieDetail } from "../../api";
 import Loading from "../../components/Loading";
-import { ORIGINAL_URL, W500_URL } from "../../lib/imgUrl";
+import { W500_URL } from "../../lib/imgUrl";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "../../components/Wrapper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const moviedatas = [
   { num: 0, id: 278, title: "쇼생크 탈출" },
@@ -42,34 +44,42 @@ const moviedatas = [
   { num: 31, id: 42190, title: "클래식" },
 ];
 
-const Bg_1 = styled.div`
+const Bg1 = styled.div`
   display: none;
   @media screen and (max-width: 440px) {
     position: absolute;
-    top: 93px;
+    /* top: 93px; */
     left: 0;
+    top: 60px;
     z-index: -10;
     font-size: 20px;
     line-height: 30px;
     width: 95%;
     height: 250px;
-    background-color: gray;
+    /* background-color: #eee7d7; */
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
     display: block;
   }
 `;
 
-const Bg_2 = styled.div`
+const Bg2 = styled.div`
   display: none;
   @media screen and (max-width: 440px) {
     position: absolute;
-    bottom: 233px;
+    /* bottom: 187px; */
+    bottom: 60px;
     right: 0;
     z-index: -10;
     font-size: 20px;
     line-height: 30px;
     width: 95%;
     height: 250px;
-    background-color: gray;
+    /* background-color: #eee7d7; */
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
     display: block;
   }
 `;
@@ -127,7 +137,7 @@ const Title = styled.div`
   }
   @media screen and (max-width: 440px) {
     width: 100%;
-    margin-bottom: 63px;
+    margin-bottom: 30px;
     height: 30px;
 
     h4 {
@@ -135,6 +145,8 @@ const Title = styled.div`
       height: 20px;
       font-size: 14px;
       line-height: 20px;
+      top: 20px;
+      left: 50%;
     }
   }
 `;
@@ -147,16 +159,24 @@ const Main = styled.div`
   /* position: relative; */
   width: 100%;
   height: 100%;
+  justify-content: space-between;
   h5 {
-    text-align: center;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    /* transform: translateX(-2px); */
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: crimson;
+    font-weight: 900;
+    /* text-align: center;
+    width: 100%; */
+    /* height: 50px; */
+    /* line-height: 50px; */
     /* height: 10px; */
   }
 
   @media screen and (min-width: 441px) {
+    position: unset;
     max-width: 1785px;
     width: 100%;
     height: 100vh;
@@ -185,15 +205,15 @@ const Main = styled.div`
   }
 `;
 
-const Mo_1 = styled.div`
+const Mo1 = styled.div`
   display: flex;
   width: 100%;
-  height: 250px;
+  height: 50%;
   /* position: absolute;
   top: 0;
   left: 0; */
   justify-content: end;
-  align-items: center;
+  /* align-items: center; */
   padding: 0 7% 0 0;
   @media screen and (min-width: 441px) {
     position: unset;
@@ -210,10 +230,10 @@ const Mo_1 = styled.div`
   }
 `;
 
-const Mo_2 = styled.div`
+const Mo2 = styled.div`
   display: flex;
   width: 100%;
-  height: 48%;
+  height: 50%;
   /* position: absolute;
   bottom: 0;
   right: 0; */
@@ -233,8 +253,13 @@ const Mo_2 = styled.div`
   }
 `;
 
-const HintWrap_1 = styled.div`
+const HintWrap1 = styled.div`
   /* margin-right: 30px; */
+  height: 250px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   @media screen and (min-width: 1401px) {
     /* width: 100px; */
     /* height: 430px; */
@@ -244,9 +269,14 @@ const HintWrap_1 = styled.div`
     margin: 0 10px;
   }
 `;
-const HintWrap_2 = styled.div`
+const HintWrap2 = styled.div`
   /* margin-left: 30px; */
   /* width: 100px; */
+  height: 250px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   @media screen and (min-width: 1401px) {
     /* height: 430px; */
   }
@@ -266,16 +296,27 @@ const Score = styled.div`
     width: 100%;
     margin-top: 13px;
     margin-bottom: 50px;
-    font-size: 40px;
+    font-size: 30px;
+  }
+
+  svg {
+    color: yellow;
   }
   @media screen and (max-width: 440px) {
+    width: 100%;
     h2 {
       font-size: 14px;
+      color: white;
     }
     p {
       margin-top: 13px;
-      margin-bottom: 20px;
-      font-size: 20px;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: white;
+
+      svg {
+        color: #fdcc0d;
+      }
     }
   }
 `;
@@ -297,11 +338,13 @@ const Credits = styled.div`
   }
   @media screen and (max-width: 440px) {
     width: 100%;
+    /* display: flex; */
     /* padding: 0 2px; */
     p {
       /* width: 100px; */
       font-size: 10px;
       margin-bottom: 10px;
+      color: white;
       text-align: center;
     }
   }
@@ -357,6 +400,7 @@ const Poster = styled.div`
     height: 250px;
     padding: 5%;
     img {
+      /* box-shadow: 0 0 5px black; */
       width: 100%;
       &:hover {
         transform: scale(1);
@@ -378,7 +422,7 @@ const ShowWrap = styled.div`
   @media screen and (max-width: 440px) {
     width: 100%;
     position: absolute;
-    bottom: 18%;
+    bottom: 0%;
     left: 0%;
     z-index: 990;
     margin-top: 10px;
@@ -559,18 +603,21 @@ const Ground = () => {
           <PageTitle title={"경기장"}></PageTitle>
 
           <Header />
-          <Bg_1></Bg_1>
-          <Bg_2></Bg_2>
+          <Bg1></Bg1>
+          <Bg2></Bg2>
           <Title>
             <h4>{displayRoundTitle()}</h4>
           </Title>
           <Container>
             <Main>
-              <Mo_1>
-                <HintWrap_1>
+              <Mo1>
+                <HintWrap1>
                   <Score $scoreLight={scoreLight}>
                     <h2>평점</h2>
-                    <p>{Math.round(data[0].vote_average)}점</p>
+                    <p>
+                      <FontAwesomeIcon icon={faStar} />
+                      {Math.round(data[0].vote_average)}점
+                    </p>
                   </Score>
                   <Credits $creditLight={creditLight}>
                     <Person>
@@ -595,27 +642,31 @@ const Ground = () => {
                     </Person>
                     <p>{firstcredit.cast[2].name}</p>
                   </Credits>
-                </HintWrap_1>
+                </HintWrap1>
                 <Poster onClick={() => handleMovieSelect(currentMovies[0])}>
                   <img
                     src={W500_URL + data[0].poster_path}
                     alt={data[0].title}
                   />
                 </Poster>
-              </Mo_1>
+              </Mo1>
 
               <h5>vs</h5>
-              <Mo_2>
+              <Mo2>
                 <Poster onClick={() => handleMovieSelect(currentMovies[1])}>
                   <img
                     src={W500_URL + data[1].poster_path}
                     alt={data[1].title}
                   />
                 </Poster>
-                <HintWrap_2>
+                <HintWrap2>
                   <Score $scoreLight={scoreLight}>
                     <h2>평점</h2>
-                    <p>{Math.round(data[1].vote_average)}점</p>
+                    <p>
+                      {" "}
+                      <FontAwesomeIcon icon={faStar} />
+                      {Math.round(data[1].vote_average)}점
+                    </p>
                   </Score>
                   <Credits $creditLight={creditLight}>
                     <Person>
@@ -640,8 +691,8 @@ const Ground = () => {
                     </Person>
                     <p>{secondcredit.cast[2].name}</p>
                   </Credits>
-                </HintWrap_2>
-              </Mo_2>
+                </HintWrap2>
+              </Mo2>
             </Main>
           </Container>
           <ShowWrap>

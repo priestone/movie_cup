@@ -7,6 +7,8 @@ const HeaderWrap = styled.div`
   height: 100px;
   padding: ${headerStyle.pcPadding};
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 10;
   a {
     width: 300px;
@@ -15,6 +17,9 @@ const HeaderWrap = styled.div`
   @media screen and (max-width: 440px) {
     height: 50px;
     padding: ${headerStyle.moPadding};
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 `;
 

@@ -1,20 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "../../components/Wrapper";
-
-const Homeheader = styled.div`
-  font-size: 30px;
-  position: absolute;
-  top: 20px;
-  left: 50px;
-  font-family: "Gowun Batang", serif;
-  @media screen and (max-width: 440px) {
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-  }
-`;
+import Header from "../../components/Header";
 
 const Container = styled.div`
   display: flex;
@@ -25,10 +12,11 @@ const Container = styled.div`
 `;
 
 const Credit = styled.div`
+  /* max-width: 1323px; */
   width: 1323px;
   height: 100vh;
   /* background-color: black; */
-  padding: 306px 360px 0 388px;
+  padding: 306px 360px 0 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,6 +27,9 @@ const Credit = styled.div`
   }
 
   @media screen and (max-width: 1000px) {
+    max-width: 1000px;
+    padding: 306px 150px 0 150px;
+    width: 100%;
     h2 {
       font-size: 50px;
       font-weight: 700;
@@ -46,6 +37,10 @@ const Credit = styled.div`
   }
 
   @media screen and (max-width: 440px) {
+    max-width: 440px;
+    width: 100%;
+    padding: 200px 0 0 0;
+
     h2 {
       font-size: 44px;
       font-weight: 600;
@@ -62,12 +57,13 @@ const TextWrap = styled.div`
   font-weight: 300;
 
   @media screen and (max-width: 1000px) {
-    margin-top: 60px;
     margin-bottom: 100px;
   }
 
   @media screen and (max-width: 440px) {
-    margin-top: 40px;
+    justify-content: center;
+    max-width: 300px;
+    width: 100%;
     margin-bottom: 100px;
   }
 `;
@@ -86,8 +82,10 @@ const TextWrap1 = styled.div`
     line-height: 30px;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 440px) {
+    width: 100px;
     font-size: 16px;
+    margin: 0 10px;
     line-height: 24px;
   }
 `;
@@ -105,7 +103,9 @@ const TextWrap2 = styled.div`
     font-size: 20px;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 440px) {
+    margin: 0 10px;
+    width: 100px;
     font-size: 16px;
     line-height: 24px;
   }
@@ -150,7 +150,7 @@ const Home = () => {
 
   return (
     <>
-      <Homeheader>방구석 평론가</Homeheader>
+      <Header></Header>
       <Container>
         <Credit>
           <h2>영화 이상형 월드컵</h2>
