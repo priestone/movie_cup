@@ -58,6 +58,7 @@
 
 **24.11.11 (월) (6일차)**
 
+- 반응형 작업
 - Round 페이지 버튼 컴포넌트 제작
   (평점보기, 출연진보기, 새로고침)
 
@@ -68,11 +69,11 @@
 
 # 설치
 
-[x] npm i react-router-dom
-[x] npm i node-fetch
-[x] npm i styled-components
-[x] npm i styled-reset
-[x] npm i react-spinners
-[x] font-awesome
-[x] npm i react-hook-form
-[] helmet-async
+- [x] npm i react-router-dom
+- [x] npm i node-fetch
+- [x] npm i styled-components
+- [x] npm i styled-reset
+- [x] npm i react-spinners
+- [x] font-awesome
+- [x] npm i react-hook-form
+- [x] helmet-async

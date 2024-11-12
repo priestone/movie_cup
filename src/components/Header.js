@@ -17,7 +17,7 @@ const HeaderWrap = styled.div`
   @media screen and (max-width: 440px) {
     height: 50px;
     padding: ${headerStyle.moPadding};
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
   }

@@ -16,7 +16,7 @@ const Head = styled.h2`
   left: 50%;
   transform: translateX(-50%);
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1500px) {
     font-size: 30px;
   }
 
@@ -26,7 +26,7 @@ const Head = styled.h2`
 `;
 
 const Container = styled.div`
-  padding: 150px 20%;
+  padding: 150px 20% 60px 20%;
   display: flex;
   justify-content: space-between;
 
@@ -35,10 +35,13 @@ const Container = styled.div`
     bottom: 10px;
     left: 50%;
   }
+  @media screen and (max-width: 1500px) {
+    padding: 100px 10% 10% 20%;
+  }
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
-    padding: 100px 20% 15% 20%;
+    padding: 100px 15% 15% 20%;
   }
 
   @media screen and (max-width: 440px) {
@@ -51,8 +54,14 @@ const Poster = styled.div`
   width: 500px;
   height: 715px;
   background-color: gray;
+  @media screen and (max-width: 1500px) {
+    width: 400px;
+    height: 572px;
+  }
+
   @media screen and (max-width: 1000px) {
     width: 100%;
+    height: 850px;
   }
 
   @media screen and (max-width: 440px) {
@@ -99,6 +108,40 @@ const TextWrap = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
+  }
+
+  @media screen and (max-width: 1500px) {
+    width: 55%;
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+    }
+    p {
+      margin: 12px 0;
+      font-size: 16px;
+    }
+
+    ul {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    li {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    h5 {
+      font-size: 16px;
+      line-height: 18px;
+      opacity: 0.9;
+    }
+    span {
+      font-size: 13px;
+      opacity: 0.8;
+      font-weight: 100;
+      letter-spacing: 0px;
+      line-height: 28px;
+    }
   }
 
   @media screen and (max-width: 1000px) {

@@ -233,7 +233,7 @@ const Mo1 = styled.div`
 const Mo2 = styled.div`
   display: flex;
   width: 100%;
-  height: 50%;
+  height: 52%;
   /* position: absolute;
   bottom: 0;
   right: 0; */
@@ -328,12 +328,13 @@ const Credits = styled.div`
   align-items: center;
   justify-content: center;
   display: ${(props) => (props.$creditLight ? "block" : "none")};
-
   p {
+    width: 100%;
     /* width: 150px; */
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 20px;
+    /* text-align: center; */
     /* transform: translateX(-40px); */
   }
   @media screen and (max-width: 440px) {
@@ -368,7 +369,8 @@ const Poster = styled.div`
   /* width: 380px;
   height: 543px; */
   width: 312px;
-  height: 449px;
+  height: 350px;
+  /* height: 100%; */
   /* margin: 0 30px; */
   /* background-color: salmon; */
   overflow: hidden;
