@@ -73,6 +73,7 @@ const Poster = styled.div`
 const TextWrap = styled.div`
   position: relative;
   width: 45%;
+  margin-left: 20px;
   h2 {
     font-size: 50px;
     font-weight: 700;
@@ -146,6 +147,7 @@ const TextWrap = styled.div`
 
   @media screen and (max-width: 1000px) {
     width: 100%;
+    margin-left: 0;
     h2 {
       font-size: 30px;
       font-weight: 600;
@@ -185,7 +187,7 @@ const TextWrap = styled.div`
   }
 `;
 
-const GoHome = styled.button`
+const GoHome = styled.div`
   all: unset;
 
   width: 150px;
@@ -195,7 +197,7 @@ const GoHome = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 30px;
   &:hover span {
     transform: translateX(50px);
     transition: 0.5s;
@@ -217,10 +219,23 @@ const GoHome = styled.button`
   }
 `;
 
+const TransitionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+`;
+
 const Ending = () => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [showTransition, setShowTransition] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -228,11 +243,25 @@ const Ending = () => {
         const movieData = await movieDetail(id);
         setData(movieData);
         setIsLoading(false);
+
+        const timer = setTimeout(() => {
+          setShowTransition(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [id]);
+
+  if (showTransition) {
+    return (
+      <TransitionContainer>
+        두구두구두구... 경기 우승 작품을 공개합니다!
+      </TransitionContainer>
+    );
+  }
 
   console.log(data);
   return (
