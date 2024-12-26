@@ -42,7 +42,7 @@ const Credit = styled.div`
     padding: 200px 0 0 0;
 
     h2 {
-      font-size: 44px;
+      font-size: 40px;
       font-weight: 600;
     }
   }
@@ -77,16 +77,27 @@ const TextWrap1 = styled.div`
   opacity: 0.6;
   flex-direction: column;
 
+  p {
+    margin-top: 20px;
+  }
+
   @media screen and (max-width: 1000px) {
     font-size: 20px;
     line-height: 30px;
+    p {
+      margin-top: 14px;
+    }
   }
 
   @media screen and (max-width: 440px) {
     width: 100px;
     font-size: 16px;
-    margin: 0 10px;
+    margin: 00px 10px;
     line-height: 24px;
+
+    p {
+      margin-top: 10px;
+    }
   }
 `;
 
@@ -98,9 +109,18 @@ const TextWrap2 = styled.div`
   font-size: 24px;
   opacity: 0.6;
   flex-direction: column;
+
+  p {
+    margin-top: 20px;
+  }
+
   @media screen and (max-width: 1000px) {
     line-height: 30px;
     font-size: 20px;
+
+    p {
+      margin-top: 14px;
+    }
   }
 
   @media screen and (max-width: 440px) {
@@ -108,6 +128,10 @@ const TextWrap2 = styled.div`
     width: 100px;
     font-size: 16px;
     line-height: 24px;
+
+    p {
+      margin-top: 10px;
+    }
   }
 `;
 
@@ -116,9 +140,10 @@ const Start = styled.button`
   width: 300px;
   height: 50px;
   font-size: 24px;
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 50px;
   text-align: center;
+  font-size: 20px;
   cursor: pointer;
   &:hover {
     background-color: white;

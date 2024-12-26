@@ -45,32 +45,23 @@ const moviedatas = [
 ];
 
 const Container = styled.div`
-  /* width: 100%; */
-  /* padding: 0 135px; */
   display: flex;
-  /* flex-direction: row;
-  padding: 0 30px;
-  height: 100vh; */
-  /* @media screen and (min-width: 441px) {
-    flex-direction: row;
-  } */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding-bottom: 50px;
 
   @media screen and (max-width: 440px) {
     width: 100%;
     height: 650px;
-    /* display: flex; */
     flex-direction: column;
-    /* margin-top: 30px; */
-    /* padding: 0 15px; */
   }
 `;
 
 const Title = styled.div`
   width: 100%;
-  /* height: 120px; */
-  /* display: flex; */
-  /* position: absolute; */
-  /* align-items: center; */
+
   h4 {
     position: absolute;
     top: 50px;
@@ -113,30 +104,23 @@ const Title = styled.div`
 
 const Main = styled.div`
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   display: flex;
-  /* position: relative; */
   width: 100%;
-  /* height: 100%; */
   justify-content: space-between;
   h5 {
     transform: translateY(-10%);
     font-size: 50px;
     color: crimson;
-    font-weight: 900;
+    font-weight: 600;
     text-align: center;
-    /* width: 100%; */
-    /* height: 50px; */
     line-height: 60px;
-    /* height: 10px; */
   }
 
   @media screen and (min-width: 441px) {
     position: unset;
     max-width: 1785px;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,14 +134,12 @@ const Main = styled.div`
       text-align: center;
     }
     h5 {
-      /* width: 100px; */
-      /* height: 543px; */
-      /* line-height: 543px; */
       width: 50px;
       height: auto;
       font-size: 30px;
-      font-weight: 900;
+      font-weight: 600;
       text-align: center;
+      transform: translateY(-160%);
     }
   }
 `;
@@ -166,20 +148,17 @@ const Mo1 = styled.div`
   display: flex;
   width: 100%;
   height: 250px;
-  /* position: absolute;
-  top: 0;
-  left: 0; */
   justify-content: end;
-  /* align-items: center; */
   padding: 0 7% 0 0;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
+
   @media screen and (min-width: 441px) {
     position: unset;
-    /* width: 39%; */
     width: 500px;
     height: 85%;
-    padding: 3%;
+    padding: 0 3%;
+    flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -195,9 +174,6 @@ const Mo2 = styled.div`
   display: flex;
   width: 100%;
   height: 250px;
-  /* position: absolute;
-  bottom: 0;
-  right: 0; */
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   justify-content: start;
@@ -205,9 +181,9 @@ const Mo2 = styled.div`
   @media screen and (min-width: 441px) {
     position: unset;
     width: 500px;
-    /* width: 39%; */
     height: 85%;
-    padding: 3%;
+    padding: 0 3%;
+    flex-direction: column;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -219,53 +195,52 @@ const Mo2 = styled.div`
 `;
 
 const HintWrap1 = styled.div`
-  /* margin-right: 30px; */
   height: 250px;
-  width: 200px;
+  width: 100%;
+  /* width: 200px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   @media screen and (min-width: 1401px) {
-    /* width: 100px; */
-    /* height: 430px; */
   }
   @media screen and (min-width: 441px) {
-    /* height: 300px; */
     margin: 0 10px;
+    height: 21%;
   }
 `;
 const HintWrap2 = styled.div`
-  /* margin-left: 30px; */
-  /* width: 100px; */
   height: 250px;
-  width: 200px;
+  /* width: 200px; */
+  width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   @media screen and (min-width: 1401px) {
-    /* height: 430px; */
   }
   @media screen and (min-width: 441px) {
-    /* height: 300px; */
     margin: 0 10px;
+    height: 21%;
   }
 `;
 
 const Score = styled.div`
   text-align: center;
-  display: ${(props) => (props.$scoreLight ? "block" : "none")};
+  /* display: ${(props) => (props.$scoreLight ? "block" : "none")}; */
+  display: block;
   h2 {
     font-size: 20px;
   }
   p {
     width: 100%;
-    margin-top: 13px;
-    margin-bottom: 50px;
+    /* margin-top: 13px; */
+    margin-bottom: 30px;
     font-size: 30px;
+    font-weight: 500;
   }
 
   svg {
     color: yellow;
+    font-size: 18px;
   }
   @media screen and (max-width: 440px) {
     width: 100%;
@@ -287,29 +262,24 @@ const Score = styled.div`
 `;
 
 const Credits = styled.div`
-  /* width: 125px; */
   text-align: center;
   padding: 0;
   align-items: center;
   justify-content: center;
-  display: ${(props) => (props.$creditLight ? "block" : "none")};
+  display: ${(props) => (props.$creditLight ? "flex" : "none")};
+  flex-direction: row;
   p {
     width: 100%;
-    /* width: 150px; */
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 20px;
-    /* text-align: center; */
-    /* transform: translateX(-40px); */
   }
   @media screen and (max-width: 440px) {
     width: 100%;
-    /* display: flex; */
-    /* padding: 0 2px; */
+
     p {
-      /* width: 100px; */
       font-size: 10px;
-      margin-bottom: 10px;
+      /* margin-bottom: 10px; */
       color: white;
       text-align: center;
     }
@@ -324,20 +294,16 @@ const Person = styled.div`
   border-radius: 50%;
 
   @media screen and (min-width: 441px) {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     margin-bottom: 10px;
   }
 `;
 
 const Poster = styled.div`
-  /* width: 380px;
-  height: 543px; */
   width: 312px;
-  height: 350px;
-  /* height: 100%; */
-  /* margin: 0 30px; */
-  /* background-color: salmon; */
+  /* height: 350px; */
+  height: 70%;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -347,27 +313,26 @@ const Poster = styled.div`
 
   img {
     width: 110%;
+    /* height: 100%; */
     &:hover {
       transform: scale(1.05);
       transition: 0.5s;
     }
   }
   @media screen and (max-width: 1400px) {
-    width: 250px;
-    height: 370px;
+    /* width: 250px; */
+    /* height: 370px; */
   }
 
   @media screen and (max-width: 1200px) {
     width: 250px;
-    height: 370px;
+    /* height: 370px; */
   }
   @media screen and (max-width: 440px) {
-    /* align-items: start; */
     width: 50%;
-    height: 250px;
+    /* height: 250px; */
     padding: 5%;
     img {
-      /* box-shadow: 0 0 5px black; */
       width: 100%;
       &:hover {
         transform: scale(1);
@@ -379,23 +344,19 @@ const Poster = styled.div`
 
 const ShowWrap = styled.div`
   width: 100%;
-  /* position: absolute;
-  bottom: 15%;
-  left: 0%; */
-  /* z-index: 990; */
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display: flex;
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: 441px) {
+  /* @media screen and (min-width: 441px) {
     width: 100%;
     position: absolute;
-    bottom: 100px;
+    bottom: 60px;
     left: 0%;
     z-index: 990;
     display: flex;
-  }
+  } */
 `;
 
 const Show = styled.button`
@@ -579,9 +540,14 @@ const Ground = () => {
           <Container>
             <Main>
               <Mo1>
+                <Poster onClick={() => handleMovieSelect(currentMovies[0])}>
+                  <img
+                    src={W500_URL + data[0].poster_path}
+                    alt={data[0].title}
+                  />
+                </Poster>
                 <HintWrap1>
                   <Score $scoreLight={scoreLight}>
-                    <h2>평점</h2>
                     <p>
                       <FontAwesomeIcon icon={faStar} />
                       {Math.round(data[0].vote_average)}점
@@ -594,29 +560,25 @@ const Ground = () => {
                         alt={firstcredit.cast[0].name}
                       />
                     </Person>
-                    <p>{firstcredit.cast[0].name}</p>
                     <Person>
                       <img
                         src={W500_URL + firstcredit.cast[1].profile_path}
                         alt={firstcredit.cast[1].name}
                       />
                     </Person>
-                    <p>{firstcredit.cast[1].name}</p>
                     <Person>
                       <img
                         src={W500_URL + firstcredit.cast[2].profile_path}
                         alt={firstcredit.cast[2].name}
                       />
                     </Person>
+                  </Credits>
+                  <Credits $creditLight={creditLight}>
+                    <p>{firstcredit.cast[0].name}</p>
+                    <p>{firstcredit.cast[1].name}</p>
                     <p>{firstcredit.cast[2].name}</p>
                   </Credits>
                 </HintWrap1>
-                <Poster onClick={() => handleMovieSelect(currentMovies[0])}>
-                  <img
-                    src={W500_URL + data[0].poster_path}
-                    alt={data[0].title}
-                  />
-                </Poster>
               </Mo1>
 
               <h5>vs</h5>
@@ -629,7 +591,6 @@ const Ground = () => {
                 </Poster>
                 <HintWrap2>
                   <Score $scoreLight={scoreLight}>
-                    <h2>평점</h2>
                     <p>
                       {" "}
                       <FontAwesomeIcon icon={faStar} />
@@ -643,30 +604,32 @@ const Ground = () => {
                         alt={secondcredit.cast[0].name}
                       />
                     </Person>
-                    <p>{secondcredit.cast[0].name}</p>
                     <Person>
                       <img
                         src={W500_URL + secondcredit.cast[1].profile_path}
                         alt={secondcredit.cast[1].name}
                       />
                     </Person>
-                    <p>{secondcredit.cast[1].name}</p>
                     <Person>
                       <img
                         src={W500_URL + secondcredit.cast[2].profile_path}
                         alt={secondcredit.cast[2].name}
                       />
                     </Person>
+                  </Credits>
+                  <Credits $creditLight={creditLight}>
+                    <p>{secondcredit.cast[0].name}</p>
+                    <p>{secondcredit.cast[1].name}</p>
                     <p>{secondcredit.cast[2].name}</p>
                   </Credits>
                 </HintWrap2>
               </Mo2>
-              <ShowWrap>
-                <Show onClick={toggleScore}>평점</Show>
-                <Show onClick={toggleCredit}>출연진</Show>
-                <Show onClick={handleReset}>리셋</Show>
-              </ShowWrap>
             </Main>
+            <ShowWrap>
+              {/* <Show onClick={toggleScore}>평점</Show> */}
+              <Show onClick={toggleCredit}>출연진</Show>
+              <Show onClick={handleReset}>리셋</Show>
+            </ShowWrap>
           </Container>
         </>
       )}
