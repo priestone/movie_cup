@@ -56,48 +56,47 @@ const Container = styled.div`
     width: 100%;
     height: 650px;
     flex-direction: column;
+    padding-bottom: 0;
   }
 `;
 
 const Title = styled.div`
   width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  transform: translateY(30px);
 
   h4 {
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    width: 300px;
-    height: 50px;
-    transform: translate(-50%, 0);
     font-size: 30px;
-    text-align: center;
-    line-height: 50px;
     color: white;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 30px;
+    margin-bottom: 10px;
   }
-  @media screen and (min-width: 441px) {
-    width: 150px;
-    /* height: 30px; */
-    font-size: 20px;
-    position: absolute;
-    line-height: 30px;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  @media screen and (max-width: 440px) {
-    width: 100%;
-    margin-bottom: 30px;
-    height: 30px;
 
+  .progress-bar {
+    width: 30%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+
+    .progress {
+      height: 100%;
+      background-color: #4caf50;
+      transition: width 0.3s ease-in-out;
+
+      width: ${(props) => props.progress || 0}%;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
     h4 {
-      width: 100px;
-      height: 20px;
-      font-size: 14px;
-      line-height: 20px;
-      top: 20px;
-      left: 50%;
+      font-size: 20px;
+    }
+    .progress-bar {
+      width: 90%;
+      margin-bottom: 20px;
     }
   }
 `;
@@ -107,6 +106,7 @@ const Main = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+
   h5 {
     transform: translateY(-10%);
     font-size: 50px;
@@ -120,7 +120,7 @@ const Main = styled.div`
     position: unset;
     max-width: 1785px;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,9 +149,10 @@ const Mo1 = styled.div`
   width: 100%;
   height: 250px;
   justify-content: end;
-  padding: 0 7% 0 0;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  /* flex-direction: column; */
+  /* padding: 0 7% 0 0; */
+  /* border-top: 1px solid white; */
+  /* border-bottom: 1px solid white; */
 
   @media screen and (min-width: 441px) {
     position: unset;
@@ -174,10 +175,10 @@ const Mo2 = styled.div`
   display: flex;
   width: 100%;
   height: 250px;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  /* border-top: 1px solid white; */
+  /* border-bottom: 1px solid white; */
   justify-content: start;
-  padding: 0 0 0 7%;
+  /* padding: 0 0 0 7%; */
   @media screen and (min-width: 441px) {
     position: unset;
     width: 500px;
@@ -196,30 +197,32 @@ const Mo2 = styled.div`
 
 const HintWrap1 = styled.div`
   height: 250px;
-  width: 100%;
+  width: 50%;
   /* width: 200px; */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  @media screen and (min-width: 1401px) {
-  }
+
   @media screen and (min-width: 441px) {
     margin: 0 10px;
-    height: 21%;
+    /* height: 21%; */
+    width: 100%;
+    flex-direction: column;
   }
 `;
 const HintWrap2 = styled.div`
   height: 250px;
   /* width: 200px; */
-  width: 100%;
+  width: 50%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  @media screen and (min-width: 1401px) {
-  }
+
   @media screen and (min-width: 441px) {
     margin: 0 10px;
-    height: 21%;
+    width: 100%;
+    flex-direction: column;
+    /* height: 21%; */
   }
 `;
 
@@ -235,15 +238,18 @@ const Score = styled.div`
     /* margin-top: 13px; */
     margin-bottom: 30px;
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 300;
   }
 
   svg {
     color: yellow;
     font-size: 18px;
+    vertical-align: 0.1em;
   }
   @media screen and (max-width: 440px) {
     width: 100%;
+    display: flex;
+    align-items: center;
     h2 {
       font-size: 14px;
       color: white;
@@ -276,6 +282,7 @@ const Credits = styled.div`
   }
   @media screen and (max-width: 440px) {
     width: 100%;
+    flex-direction: column;
 
     p {
       font-size: 10px;
@@ -286,12 +293,47 @@ const Credits = styled.div`
   }
 `;
 
+const Name = styled.div`
+  text-align: center;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  display: ${(props) => (props.$creditLight ? "flex" : "none")};
+  flex-direction: row;
+  p {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    flex-direction: column;
+
+    p {
+      height: 63px;
+      font-size: 10px;
+      color: white;
+      text-align: center;
+      margin-bottom: 0;
+      line-height: 63px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+`;
+
 const Person = styled.div`
-  width: 35px;
-  height: 35px;
-  margin: 5px auto;
+  width: 50px;
+  height: 50px;
+  margin: 10px auto;
   overflow: hidden;
   border-radius: 50%;
+
+  img {
+    width: 100%;
+  }
 
   @media screen and (min-width: 441px) {
     width: 80px;
@@ -303,6 +345,7 @@ const Person = styled.div`
 const Poster = styled.div`
   width: 312px;
   /* height: 350px; */
+  min-height: 500px;
   height: 70%;
   overflow: hidden;
   display: flex;
@@ -330,10 +373,11 @@ const Poster = styled.div`
   }
   @media screen and (max-width: 440px) {
     width: 50%;
-    /* height: 250px; */
-    padding: 5%;
+    min-height: 250px;
+    height: 100%;
+    /* padding: 5%; */
     img {
-      width: 100%;
+      width: 80%;
       &:hover {
         transform: scale(1);
         transition: 0s;
@@ -349,14 +393,9 @@ const ShowWrap = styled.div`
   justify-content: center;
   align-items: center;
 
-  /* @media screen and (min-width: 441px) {
-    width: 100%;
-    position: absolute;
-    bottom: 60px;
-    left: 0%;
-    z-index: 990;
-    display: flex;
-  } */
+  @media screen and (max-width: 440px) {
+    /* margin-top: 50px; */
+  }
 `;
 
 const Show = styled.button`
@@ -524,6 +563,12 @@ const Ground = () => {
     saveToLocalStorage("currentMovies", RandomMovies(shuffledMovies));
   };
 
+  const calculateProgress = () => {
+    const total = round.totalRounds * 2; // 총 영화 수
+    const completed = (round.current - 1) * 2; // 완료된 경기 수
+    return Math.round((completed / total) * 100); // 퍼센트 계산
+  };
+
   return (
     <>
       {isLoading ? (
@@ -534,8 +579,11 @@ const Ground = () => {
 
           <Header />
 
-          <Title>
-            <h4>{displayRoundTitle()}</h4>
+          <Title progress={calculateProgress()}>
+            <h4>{`${round.totalRounds * 2}강`}</h4>
+            <div className="progress-bar">
+              <div className="progress" />
+            </div>
           </Title>
           <Container>
             <Main>
@@ -573,11 +621,11 @@ const Ground = () => {
                       />
                     </Person>
                   </Credits>
-                  <Credits $creditLight={creditLight}>
+                  <Name $creditLight={creditLight}>
                     <p>{firstcredit.cast[0].name}</p>
                     <p>{firstcredit.cast[1].name}</p>
                     <p>{firstcredit.cast[2].name}</p>
-                  </Credits>
+                  </Name>
                 </HintWrap1>
               </Mo1>
 
@@ -617,11 +665,11 @@ const Ground = () => {
                       />
                     </Person>
                   </Credits>
-                  <Credits $creditLight={creditLight}>
+                  <Name $creditLight={creditLight}>
                     <p>{secondcredit.cast[0].name}</p>
                     <p>{secondcredit.cast[1].name}</p>
                     <p>{secondcredit.cast[2].name}</p>
-                  </Credits>
+                  </Name>
                 </HintWrap2>
               </Mo2>
             </Main>
