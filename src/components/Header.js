@@ -6,7 +6,7 @@ const HeaderWrap = styled.div`
   width: 100%;
   height: 100px;
   padding: ${headerStyle.pcPadding};
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
@@ -26,6 +26,7 @@ const HeaderWrap = styled.div`
 const Logo = styled.h2`
   font-size: 30px;
   font-family: "Gowun Batang", serif;
+  line-height: 60px;
   @media screen and (max-width: 440px) {
     font-size: 16px;
   }

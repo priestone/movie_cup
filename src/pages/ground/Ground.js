@@ -63,9 +63,9 @@ const Container = styled.div`
 const Title = styled.div`
   width: 100%;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 60px;
   transform: translateY(30px);
-
+  position: relative;
   h4 {
     font-size: 30px;
     color: white;
@@ -149,6 +149,7 @@ const Mo1 = styled.div`
   width: 100%;
   height: 250px;
   justify-content: end;
+  position: relative;
   /* flex-direction: column; */
   /* padding: 0 7% 0 0; */
   /* border-top: 1px solid white; */
@@ -197,7 +198,7 @@ const Mo2 = styled.div`
 
 const HintWrap1 = styled.div`
   height: 250px;
-  width: 50%;
+  width: 100%;
   /* width: 200px; */
   display: flex;
   flex-direction: row;
@@ -213,7 +214,7 @@ const HintWrap1 = styled.div`
 const HintWrap2 = styled.div`
   height: 250px;
   /* width: 200px; */
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -248,7 +249,8 @@ const Score = styled.div`
   }
   @media screen and (max-width: 440px) {
     width: 100%;
-    display: flex;
+    /* display: flex; */
+    display: none;
     align-items: center;
     h2 {
       font-size: 14px;
@@ -272,7 +274,8 @@ const Credits = styled.div`
   padding: 0;
   align-items: center;
   justify-content: center;
-  display: ${(props) => (props.$creditLight ? "flex" : "none")};
+  /* display: ${(props) => (props.$creditLight ? "flex" : "none")}; */
+  display: flex;
   flex-direction: row;
   p {
     width: 100%;
@@ -298,11 +301,12 @@ const Name = styled.div`
   padding: 0;
   align-items: center;
   justify-content: center;
-  display: ${(props) => (props.$creditLight ? "flex" : "none")};
+  /* display: ${(props) => (props.$creditLight ? "flex" : "none")}; */
+  display: flex;
   flex-direction: row;
   p {
     width: 100%;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     margin-bottom: 20px;
   }
@@ -316,9 +320,9 @@ const Name = styled.div`
       color: white;
       text-align: center;
       margin-bottom: 0;
-      line-height: 63px;
+      /* line-height: 63px; */
       display: flex;
-      justify-content: center;
+      justify-content: start;
       align-items: center;
     }
   }
@@ -387,41 +391,96 @@ const Poster = styled.div`
 `;
 
 const ShowWrap = styled.div`
-  width: 100%;
+  /* width: 100%; */
   /* margin-top: 10px; */
+  position: absolute;
+  top: 24px;
+  right: 30px;
+  z-index: 11;
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media screen and (max-width: 440px) {
     /* margin-top: 50px; */
+    right: 20px;
+    top: 26px;
   }
 `;
 
 const Show = styled.button`
   all: unset;
-  width: 100px;
-  height: 60px;
-  background-color: white;
+  width: 80px;
+  height: 50px;
+  /* background-color: white; */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 50px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
-  color: #1d1d1d;
   text-align: center;
-  margin: 0 50px;
+
   cursor: pointer;
-  &:hover {
-    box-shadow: 0px 0px 15px white;
-    color: black;
-  }
+
   @media screen and (max-width: 440px) {
     width: 50px;
-    height: 50px;
+    height: 30px;
     font-size: 12px;
-    margin: 0 30px;
-    &:hover {
+    /* margin: 0 30px; */
+    /* &:hover {
       box-shadow: 0px 0px 0px white;
       color: black;
+    } */
+  }
+`;
+
+const MoStartWrap = styled.div`
+  height: 250px;
+  width: 50%;
+  /* width: 200px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media screen and (min-width: 441px) {
+    margin: 0 10px;
+    /* height: 21%; */
+    width: 100%;
+    flex-direction: column;
+  }
+`;
+
+const MoStar = styled.div`
+  display: none;
+
+  @media screen and (max-width: 440px) {
+    display: block;
+    /* position: absolute;
+    top: 10px;
+    left: 75%;
+    transform: translateX(-75%); */
+  }
+`;
+
+const MoScore = styled.div`
+  width: 100%;
+  display: flex;
+  /* display: none; */
+  align-items: center;
+  /* text-align: center; */
+  justify-content: center;
+  h2 {
+    font-size: 14px;
+    color: white;
+  }
+  p {
+    margin-top: 13px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: white;
+
+    svg {
+      color: #fdcc0d;
     }
   }
 `;
@@ -577,7 +636,12 @@ const Ground = () => {
         <>
           <PageTitle title={"경기장"}></PageTitle>
 
-          <Header />
+          <Header></Header>
+          <ShowWrap>
+            {/* <Show onClick={toggleScore}>평점</Show> */}
+            {/* <Show onClick={toggleCredit}>출연진</Show> */}
+            <Show onClick={handleReset}>리셋</Show>
+          </ShowWrap>
 
           <Title progress={calculateProgress()}>
             <h4>{`${round.totalRounds * 2}강`}</h4>
@@ -594,39 +658,49 @@ const Ground = () => {
                     alt={data[0].title}
                   />
                 </Poster>
-                <HintWrap1>
-                  <Score $scoreLight={scoreLight}>
-                    <p>
-                      <FontAwesomeIcon icon={faStar} />
-                      {Math.round(data[0].vote_average)}점
-                    </p>
-                  </Score>
-                  <Credits $creditLight={creditLight}>
-                    <Person>
-                      <img
-                        src={W500_URL + firstcredit.cast[0].profile_path}
-                        alt={firstcredit.cast[0].name}
-                      />
-                    </Person>
-                    <Person>
-                      <img
-                        src={W500_URL + firstcredit.cast[1].profile_path}
-                        alt={firstcredit.cast[1].name}
-                      />
-                    </Person>
-                    <Person>
-                      <img
-                        src={W500_URL + firstcredit.cast[2].profile_path}
-                        alt={firstcredit.cast[2].name}
-                      />
-                    </Person>
-                  </Credits>
-                  <Name $creditLight={creditLight}>
-                    <p>{firstcredit.cast[0].name}</p>
-                    <p>{firstcredit.cast[1].name}</p>
-                    <p>{firstcredit.cast[2].name}</p>
-                  </Name>
-                </HintWrap1>
+                <MoStartWrap>
+                  <MoStar>
+                    <MoScore $scoreLight={scoreLight}>
+                      <p>
+                        <FontAwesomeIcon icon={faStar} />
+                        {Math.round(data[0].vote_average)}점
+                      </p>
+                    </MoScore>
+                  </MoStar>
+                  <HintWrap1>
+                    <Score $scoreLight={scoreLight}>
+                      <p>
+                        <FontAwesomeIcon icon={faStar} />
+                        {Math.round(data[0].vote_average)}점
+                      </p>
+                    </Score>
+                    <Credits $creditLight={creditLight}>
+                      <Person>
+                        <img
+                          src={W500_URL + firstcredit.cast[0].profile_path}
+                          alt={firstcredit.cast[0].name}
+                        />
+                      </Person>
+                      <Person>
+                        <img
+                          src={W500_URL + firstcredit.cast[1].profile_path}
+                          alt={firstcredit.cast[1].name}
+                        />
+                      </Person>
+                      <Person>
+                        <img
+                          src={W500_URL + firstcredit.cast[2].profile_path}
+                          alt={firstcredit.cast[2].name}
+                        />
+                      </Person>
+                    </Credits>
+                    <Name $creditLight={creditLight}>
+                      <p>{firstcredit.cast[0].name}</p>
+                      <p>{firstcredit.cast[1].name}</p>
+                      <p>{firstcredit.cast[2].name}</p>
+                    </Name>
+                  </HintWrap1>
+                </MoStartWrap>
               </Mo1>
 
               <h5>vs</h5>
@@ -637,47 +711,52 @@ const Ground = () => {
                     alt={data[1].title}
                   />
                 </Poster>
-                <HintWrap2>
-                  <Score $scoreLight={scoreLight}>
-                    <p>
-                      {" "}
-                      <FontAwesomeIcon icon={faStar} />
-                      {Math.round(data[1].vote_average)}점
-                    </p>
-                  </Score>
-                  <Credits $creditLight={creditLight}>
-                    <Person>
-                      <img
-                        src={W500_URL + secondcredit.cast[0].profile_path}
-                        alt={secondcredit.cast[0].name}
-                      />
-                    </Person>
-                    <Person>
-                      <img
-                        src={W500_URL + secondcredit.cast[1].profile_path}
-                        alt={secondcredit.cast[1].name}
-                      />
-                    </Person>
-                    <Person>
-                      <img
-                        src={W500_URL + secondcredit.cast[2].profile_path}
-                        alt={secondcredit.cast[2].name}
-                      />
-                    </Person>
-                  </Credits>
-                  <Name $creditLight={creditLight}>
-                    <p>{secondcredit.cast[0].name}</p>
-                    <p>{secondcredit.cast[1].name}</p>
-                    <p>{secondcredit.cast[2].name}</p>
-                  </Name>
-                </HintWrap2>
+                <MoStartWrap>
+                  <MoStar>
+                    <MoScore $scoreLight={scoreLight}>
+                      <p>
+                        <FontAwesomeIcon icon={faStar} />
+                        {Math.round(data[0].vote_average)}점
+                      </p>
+                    </MoScore>
+                  </MoStar>
+                  <HintWrap2>
+                    <Score $scoreLight={scoreLight}>
+                      <p>
+                        {" "}
+                        <FontAwesomeIcon icon={faStar} />
+                        {Math.round(data[1].vote_average)}점
+                      </p>
+                    </Score>
+                    <Credits $creditLight={creditLight}>
+                      <Person>
+                        <img
+                          src={W500_URL + secondcredit.cast[0].profile_path}
+                          alt={secondcredit.cast[0].name}
+                        />
+                      </Person>
+                      <Person>
+                        <img
+                          src={W500_URL + secondcredit.cast[1].profile_path}
+                          alt={secondcredit.cast[1].name}
+                        />
+                      </Person>
+                      <Person>
+                        <img
+                          src={W500_URL + secondcredit.cast[2].profile_path}
+                          alt={secondcredit.cast[2].name}
+                        />
+                      </Person>
+                    </Credits>
+                    <Name $creditLight={creditLight}>
+                      <p>{secondcredit.cast[0].name}</p>
+                      <p>{secondcredit.cast[1].name}</p>
+                      <p>{secondcredit.cast[2].name}</p>
+                    </Name>
+                  </HintWrap2>
+                </MoStartWrap>
               </Mo2>
             </Main>
-            <ShowWrap>
-              {/* <Show onClick={toggleScore}>평점</Show> */}
-              <Show onClick={toggleCredit}>출연진</Show>
-              <Show onClick={handleReset}>리셋</Show>
-            </ShowWrap>
           </Container>
         </>
       )}
