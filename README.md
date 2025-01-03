@@ -13,9 +13,9 @@
 
 ## 🖼️ 사이트 이미지
 
-![movie1](https://github.com/user-attachments/assets/7b677288-c06e-4642-b10f-62ed4a3dcd1c)
-![movie2](https://github.com/user-attachments/assets/c79627fa-3b5e-4c23-bf12-4e23eea6a6f8)
-![movie3](https://github.com/user-attachments/assets/ce9ac637-ec57-4ca1-a996-db3717555982)
+![movie1](https://github.com/user-attachments/assets/023d6be7-9030-4838-af6f-27c3cf3cbfea)
+![movie2](https://github.com/user-attachments/assets/082e3516-3a50-4207-9b14-7a2786e04122)
+![movie3](https://github.com/user-attachments/assets/18b5d3ba-ebd9-4eb8-b764-7ff36cedc665)
 
 
 
